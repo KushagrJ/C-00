@@ -24,6 +24,6 @@ int main(void)
  * \t moves the cursor to the next tab stop on that line.
  * \r positions the cursor at the beginning of the current line.
  * \n moves the cursor to the next line. \n doesn't always have to be placed at the end of a line.
- * \a, \b and \r don't work on all systems
+ * \a, \b and \r don't work on all systems.
  * The output is sent from the output buffer to the screen when (i) the buffer gets full, (ii) a newline character is encountered or (iii) there is impending input. A better solution than using \n to send the output to the screen is to use fflush().
  */
