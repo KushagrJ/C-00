@@ -9,7 +9,7 @@ int main(void)
     a = 1;
 
     printf("I am a robot.\n");
-    printf("My favorite number is %d.\n",a);
+    printf("My favorite number is %d.\n", a);
 
     return 0;
 }
