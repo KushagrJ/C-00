@@ -11,7 +11,7 @@ int main(void)
 
     scanf("%d", &salary);
 
-    printf("\tThat's Rs. %d per annum.", 12 * salary);
+    printf("\tThat's Rs. %d per annum.", 12*salary);
     printf("\rWow!\n");
 
     return 0;

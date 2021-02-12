@@ -10,7 +10,7 @@ int main(void)
 
     scanf("%f", &weightInKilograms);
 
-    weightInPounds = 2.20462 * weightInKilograms;
+    weightInPounds = 2.20462*weightInKilograms;
 
     printf("Your weight (in pounds) is %.2f\n", weightInPounds);
 

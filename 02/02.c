@@ -7,10 +7,10 @@ int main(void)
     int feet, fathoms;
 
     fathoms = 2;
-    feet = 6 * fathoms;
+    feet = 6*fathoms;
 
     printf("There are %d feet in %d fathoms.\n", feet, fathoms);
-    printf("So, there must be %d feet in %d fathoms.\n", 6 * 8, 8);
+    printf("So, there must be %d feet in %d fathoms.\n", 6*8, 8);
 
     return 0;
 }

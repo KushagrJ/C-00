@@ -4,16 +4,16 @@
 
 int main(void)
 {
-    short shortMinimum = -32767 - 1;
+    short shortMinimum = -32767-1;
     short shortMaximum = 32767;
     unsigned short unsignedShortMaximum = 65535;
-    int intMinimum = -2147483647 - 1;
+    int intMinimum = -2147483647-1;
     int intMaximum = 2147483647;
     unsigned int unsignedIntMaximum = 4294967295U;
-    long longMinimum = -9223372036854775807L - 1;
+    long longMinimum = -9223372036854775807L-1;
     long longMaximum = 9223372036854775807L;
     unsigned long unsignedLongMaximum = 18446744073709551615UL;
-    long long longLongMinimum = -9223372036854775807LL - 1;
+    long long longLongMinimum = -9223372036854775807LL-1;
     long long longLongMaximum = 9223372036854775807LL;
     unsigned long long unsignedLongLongMaximum = 18446744073709551615ULL;
 
@@ -35,6 +35,6 @@ int main(void)
  * short, int, long and long long are signed by default.
  * Normally, constants within int's range are stored as int. To make the compiler store such constants as unsigned int, long, unsigned long, long long or unsigned long long, suffixes u/U, l/L, ul/UL, ll/LL or ull/ULL should be used, respectively.
  * To print as octal and hexadecimal, %ho/%hx/%hX, %o/%x/%X, %lo/%lx/%lX or %llo/%llx/%llX should be used (for signed and unsigned, both).
- * intMinimum is set to be -2147483647 - 1 instead of -2147483648, because -2147483648 is not a number (C does not support negative literal values). -2147483648 is actually an expression: a positive literal value 2147483648 with a unary operator (-) in front of it. Since 2147483648 is too large for int, therefore -2147483648 is stored as long, instead of int. [Similarly for others]
+ * intMinimum is set to be -2147483647-1 instead of -2147483648, because -2147483648 is not a number (C does not support negative literal values). -2147483648 is actually an expression: a positive literal value 2147483648 with a unary operator (-) in front of it. Since 2147483648 is too large for int, therefore -2147483648 is stored as long, instead of int. [Similarly for others]
  * Lowercase format specifiers should be used for various integer types.
  */
