@@ -17,8 +17,13 @@ int main(void)
     return 0;
 }
 
-/*
+
+
+/* Trivia
+
  * There is no preset specifier to print a value in binary notation.
- * int a = 22; can also be written as int a = '\26'; (in octal form) or int a = '\x16'; (in hexadecimal form), and so on.
+ * int a = 22; can also be written as int a = '\26'; (in octal form) or as int a = '\x16'; (in hexadecimal form), and
+   so on.
  * %O is not a format specifier.
+
  */

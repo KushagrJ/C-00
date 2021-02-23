@@ -20,8 +20,14 @@ void butler(void)
     printf("You rang, Sir?\n");
 }
 
-/*
- * void butler(void); is a prototype, also known as a function declaration. It also specifies the properties of a fuction.
- * The first void in void butler(void); indicates that butler() doesn't have a return value. The second void means that butler() has no arguments.
+
+
+/* Trivia
+
+ * void butler(void); is a prototype, also known as a function declaration. It also specifies the properties of a
+   fuction.
+ * The first void in void butler(void); indicates that butler() doesn't have a return value. The second void means that
+   butler() has no arguments.
  * The butler() definition could've been put above the main() definition, with the program running the same.
+
  */
