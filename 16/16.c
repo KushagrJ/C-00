@@ -33,6 +33,6 @@ int main(void)
  * %lf as a long double specifier is not supported on all systems. So, %Lf should be used.
  * F can also be used instead of f.
  * %g/%G prints a value as either %f/%F or %e/%E, depending upon the value converted and the precision. Also, it removes
- * any trailing zeroes from the fractional portion of the result.
+   any trailing zeroes from the fractional portion of the result.
 
  */
