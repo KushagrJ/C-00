@@ -10,9 +10,12 @@ int main(void)
 
     scanf("%d", &decimalInteger);
 
-    printf("It can also be written in octal and hexadecimal notations as %o and %x/%X, respectively.\n"
-           "With C prefixes, they are %#o (for octal) and %#x/%#X (for hexadecimal).\n",
-           decimalInteger, decimalInteger, decimalInteger, decimalInteger, decimalInteger, decimalInteger);
+    printf("It can also be written in octal and hexadecimal notations as "
+           "%o and %x/%X, respectively.\n"
+           "With C prefixes, they are %#o (for octal) and "
+           "%#x/%#X (for hexadecimal).\n",
+           decimalInteger, decimalInteger, decimalInteger,
+           decimalInteger, decimalInteger, decimalInteger);
 
     return 0;
 }

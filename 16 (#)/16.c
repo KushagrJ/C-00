@@ -8,8 +8,9 @@ int main(void)
     double b = 2.14e9;
     long double c = 532000E-5;
 
-    printf("%f, %f and %Lf can also be written as %e/%E, %e/%E and %Le/%LE in the standard form, "
-           "or as %a/%A, %a/%A and %La/%LA in the hexadecimal form, respectively.\n",
+    printf("%f, %f and %Lf can also be written as %e/%E, %e/%E and %Le/%LE in "
+           "the standard form, or as %a/%A, %a/%A and %La/%LA in the "
+           "hexadecimal form, respectively.\n",
            a, b, c, a, a, b, b, c, c, a, a, b, b, c, c);
 
     return 0;

@@ -17,14 +17,22 @@ int main(void)
     long long longLongMaximum = 9223372036854775807LL;
     unsigned long long unsignedLongLongMaximum = 18446744073709551615ULL;
 
-    printf("The range of short on this system is %hd to %hd.\n", shortMinimum, shortMaximum);
-    printf("The range of unsigned short on this system is %d to %hu.\n", 0, unsignedShortMaximum);
-    printf("The range of int on this system is %d to %d.\n", intMinimum, intMaximum);
-    printf("The range of unsigned int on this system is %d to %u.\n", 0, unsignedIntMaximum);
-    printf("The range of long on this system is %ld to %ld.\n", longMinimum, longMaximum);
-    printf("The range of unsigned long on this system is %d to %lu.\n", 0, unsignedLongMaximum);
-    printf("The range of long long on this system is %lld to %lld.\n", longLongMinimum, longLongMaximum);
-    printf("The range of unsigned long long on this system is %d to %llu.\n", 0, unsignedLongLongMaximum);
+    printf("The range of short on this system is %hd to %hd.\n",
+           shortMinimum, shortMaximum);
+    printf("The range of unsigned short on this system is %d to %hu.\n",
+           0, unsignedShortMaximum);
+    printf("The range of int on this system is %d to %d.\n",
+           intMinimum, intMaximum);
+    printf("The range of unsigned int on this system is %d to %u.\n",
+           0, unsignedIntMaximum);
+    printf("The range of long on this system is %ld to %ld.\n",
+           longMinimum, longMaximum);
+    printf("The range of unsigned long on this system is %d to %lu.\n",
+           0, unsignedLongMaximum);
+    printf("The range of long long on this system is %lld to %lld.\n",
+           longLongMinimum, longLongMaximum);
+    printf("The range of unsigned long long on this system is %d to %llu.\n",
+           0, unsignedLongLongMaximum);
 
     return 0;
 }
