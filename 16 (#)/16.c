@@ -21,7 +21,7 @@ int main(void)
 /* Trivia
 
  * float has to be able to represent at least six significant figures and allow a range of at least 10^(-37) to 10^(37).
- * The double presicion floating-point variable type (double) has to be able to represent at least ten significant
+ * The double precision floating-point variable type (double) has to be able to represent at least ten significant
    figures and allow a range of at least 10^(-37) to 10^(37).
  * long double has to be at least as precise as double.
  * Normally, constants within double's range are stored as double. To make the compiler store such constants as float or
