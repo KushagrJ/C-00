@@ -4,14 +4,24 @@
 
 int main(void)
 {
-    float a = 32000.0;
-    double b = 2.14e9;
-    long double c = 532000E-5;
+    float a = 32000.0F;
+    double b = 2.14e2;
+    long double c = 532000E-3L;
 
-    printf("%f, %f and %Lf can also be written as %e/%E, %e/%E and %Le/%LE in "
-           "the standard form, or as %a/%A, %a/%A and %La/%LA in the "
-           "hexadecimal form, respectively.\n",
-           a, b, c, a, a, b, b, c, c, a, a, b, b, c, c);
+    printf("%.0f in various forms :-\n"
+           "Exponential Form - %.2e/%.2E\n"
+           "Hexadecimal Form - %a/%A\n\n",
+           a, a, a, a, a);
+
+    printf("%.0f in various forms :-\n"
+           "Exponential Form - %.2e/%.2E\n"
+           "Hexadecimal Form - %a/%A\n\n",
+           b, b, b, b, b);
+
+    printf("%.0Lf in various forms :-\n"
+           "Exponential Form - %.2Le/%.2LE\n"
+           "Hexadecimal Form - %La/%LA\n",
+           c, c, c, c, c);
 
     return 0;
 }
@@ -35,5 +45,6 @@ int main(void)
  * F can also be used instead of f.
  * %g/%G prints a value as either %f/%F or %e/%E, depending upon the value converted and the precision. Also, it removes
    any trailing zeroes from the fractional portion of the result.
+ * Exponential form is also known as standard form / scientific notation.
 
  */
