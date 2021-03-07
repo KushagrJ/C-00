@@ -25,6 +25,8 @@ int main(void)
 
 
 
+
+
 /* Trivia
 
  * There is no preset specifier to print a value in binary notation.

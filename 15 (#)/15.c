@@ -20,6 +20,8 @@ int main(void)
 
 
 
+
+
 /* Trivia
 
  * The char type stores small integers and characters (such as letters and punctuation marks) as integers, according to
