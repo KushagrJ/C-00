@@ -2,8 +2,10 @@
 
 #include <stdio.h>
 
+
 int main(void)
 {
+
     int ageInYears, ageInDays;
 
     ageInYears = 19;
@@ -13,4 +15,5 @@ int main(void)
            ageInYears, ageInYears, ageInDays);
 
     return 0;
+
 }

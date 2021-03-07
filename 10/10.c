@@ -2,10 +2,13 @@
 
 #include <stdio.h>
 
+
 void smile(void);
+
 
 int main(void)
 {
+
     smile();
     smile();
     smile();
@@ -22,7 +25,9 @@ int main(void)
     printf("\n");
 
     return 0;
+
 }
+
 
 void smile(void)
 {

@@ -2,8 +2,10 @@
 
 #include <stdio.h>
 
+
 int main(void)
 {
+
     int salary;
 
     printf("\aEnter your monthly in-hand salary: Rs. ");
@@ -15,6 +17,7 @@ int main(void)
     printf("\rWow!\n");
 
     return 0;
+
 }
 
 

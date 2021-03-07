@@ -2,11 +2,14 @@
 
 #include <stdio.h>
 
+
 void jolly(void);
 void deny(void);
 
+
 int main(void)
 {
+
     printf("For he's a jolly good fellow!\n");
 
     jolly();
@@ -16,12 +19,15 @@ int main(void)
     deny();
 
     return 0;
+
 }
+
 
 void jolly(void)
 {
     printf("For he's a jolly good fellow!\n");
 }
+
 
 void deny(void)
 {

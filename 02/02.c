@@ -2,8 +2,10 @@
 
 #include <stdio.h>
 
+
 int main(void)
 {
+
     int feet, fathoms;
 
     fathoms = 2;
@@ -13,6 +15,7 @@ int main(void)
     printf("So, there must be %d feet in %d fathoms.\n", 6*8, 8);
 
     return 0;
+
 }
 
 

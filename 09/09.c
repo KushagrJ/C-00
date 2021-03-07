@@ -2,8 +2,10 @@
 
 #include <stdio.h>
 
+
 int main(void)
 {
+
     int toes = 10;
 
     printf("I have %d toes.\n", toes);
@@ -11,4 +13,5 @@ int main(void)
     printf("%d squared is equal to %d.\n", toes, toes*toes);
 
     return 0;
+
 }

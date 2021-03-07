@@ -2,28 +2,35 @@
 
 #include <stdio.h>
 
+
 int main(void)
 {
+
     float a = 32000.0F;
     double b = 2.14e2;
     long double c = 532000E-3L;
+
 
     printf("%.0f in various forms :-\n"
            "Exponential Form - %.2e/%.2E\n"
            "Hexadecimal Form - %a/%A\n\n",
            a, a, a, a, a);
 
+
     printf("%.0f in various forms :-\n"
            "Exponential Form - %.2e/%.2E\n"
            "Hexadecimal Form - %a/%A\n\n",
            b, b, b, b, b);
+
 
     printf("%.0Lf in various forms :-\n"
            "Exponential Form - %.2Le/%.2LE\n"
            "Hexadecimal Form - %La/%LA\n",
            c, c, c, c, c);
 
+
     return 0;
+
 }
 
 

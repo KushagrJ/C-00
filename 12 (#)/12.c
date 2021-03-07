@@ -2,8 +2,10 @@
 
 #include <stdio.h>
 
+
 int main(void)
 {
+
     float weightInKilograms, weightInPounds;
 
     printf("Enter your weight (in kilograms): ");
@@ -15,6 +17,7 @@ int main(void)
     printf("Your weight (in pounds) is %.2f\n", weightInPounds);
 
     return 0;
+
 }
 
 

@@ -2,8 +2,10 @@
 
 #include <stdio.h>
 
+
 int main(void)
 {
+
     char a;
 
     printf("Enter a character: ");
@@ -13,6 +15,7 @@ int main(void)
     printf("The ASCII code for %c is %d\n", a, a);
 
     return 0;
+
 }
 
 

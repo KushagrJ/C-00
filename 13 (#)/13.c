@@ -2,8 +2,10 @@
 
 #include <stdio.h>
 
+
 int main(void)
 {
+
     int decimalInteger;
 
     printf("Enter a decimal integer value: ");
@@ -18,6 +20,7 @@ int main(void)
            decimalInteger, decimalInteger, decimalInteger);
 
     return 0;
+
 }
 
 

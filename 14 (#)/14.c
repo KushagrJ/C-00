@@ -2,8 +2,10 @@
 
 #include <stdio.h>
 
+
 int main(void)
 {
+
     short shortMinimum = -32767-1;
     short shortMaximum = 32767;
     unsigned short unsignedShortMaximum = 65535;
@@ -35,6 +37,7 @@ int main(void)
            0, unsignedLongLongMaximum);
 
     return 0;
+
 }
 
 
