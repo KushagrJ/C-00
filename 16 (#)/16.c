@@ -3,33 +3,60 @@
 #include <stdio.h>
 
 
+void aInVariousForms(void);
+void bInVariousForms(void);
+void cInVariousForms(void);
+
+
 int main(void)
 {
 
-    float a = 32000.0F;
-    double b = 2.14e2;
-    long double c = 532000E-3L;
+    aInVariousForms();
 
+    bInVariousForms();
+
+    cInVariousForms();
+
+    return 0;
+
+}
+
+
+void aInVariousForms(void)
+{
+
+    float a = 32000.0F;
 
     printf("%.0f in various forms :-\n"
            "Exponential Form - %.2e/%.2E\n"
            "Hexadecimal Form - %a/%A\n\n",
            a, a, a, a, a);
 
+}
+
+
+void bInVariousForms(void)
+{
+
+    double b = 2.14e2;
 
     printf("%.0f in various forms :-\n"
            "Exponential Form - %.2e/%.2E\n"
            "Hexadecimal Form - %a/%A\n\n",
            b, b, b, b, b);
 
+}
+
+
+void cInVariousForms(void)
+{
+
+    long double c = 532000E-3L;
 
     printf("%.0Lf in various forms :-\n"
            "Exponential Form - %.2Le/%.2LE\n"
            "Hexadecimal Form - %La/%LA\n",
            c, c, c, c, c);
-
-
-    return 0;
 
 }
 
