@@ -1,28 +1,28 @@
-// C11 Standard
+// C17 Standard
 
 #include <stdio.h>
 
 
-void aInVariousForms(void);
-void bInVariousForms(void);
-void cInVariousForms(void);
+void print_a_in_various_forms(void);
+void print_b_in_various_forms(void);
+void print_c_in_various_forms(void);
 
 
 int main(void)
 {
 
-    aInVariousForms();
+    print_a_in_various_forms();
 
-    bInVariousForms();
+    print_b_in_various_forms();
 
-    cInVariousForms();
+    print_c_in_various_forms();
 
     return 0;
 
 }
 
 
-void aInVariousForms(void)
+void print_a_in_various_forms(void)
 {
 
     float a = 32000.0F;
@@ -35,7 +35,7 @@ void aInVariousForms(void)
 }
 
 
-void bInVariousForms(void)
+void print_b_in_various_forms(void)
 {
 
     double b = 2.14e2;
@@ -48,7 +48,7 @@ void bInVariousForms(void)
 }
 
 
-void cInVariousForms(void)
+void print_c_in_various_forms(void)
 {
 
     long double c = 532000E-3L;

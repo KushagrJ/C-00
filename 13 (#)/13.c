@@ -1,4 +1,4 @@
-// C11 Standard
+// C17 Standard
 
 #include <stdio.h>
 
