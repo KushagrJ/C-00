@@ -27,6 +27,7 @@ int main(void)
  * The char type stores small integers and characters (such as letters and punctuation marks) as integers, according to
    a given code. The ASCII code is widely used, according to which the integer value 65 represents the character A, and
    so on.
+   [48 to 57 - 0 to 9; 65 to 90 - A to Z; 97 to 122 - a to z]
  * The size of char is always 1 byte. The standard ASCII code runs numerically from 0 to 127, so char is large enough to
    encompass it.
  * The C language defines a byte to be the number of bits used by char, so one can have a system with 16-bit or 32-bit
