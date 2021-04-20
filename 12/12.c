@@ -35,6 +35,8 @@ int main(void)
    22.765.
  * When converting floating-point values to integers, C simply truncates the
    decimal part, instead of rounding off.
+   [The truncation is done towards zero. For eg., int a = 12/5; will make a = 2,
+    and int a = -22/6; will make a = -3.]
  * %F can also be used instead of %f.
 
  * scanf() provides keyboard input to the program. The %f instructs scanf() to
@@ -60,5 +62,14 @@ int main(void)
    will ignore all trailing whitespaces. Thus, statements like
    scanf("%d\n", &variableName); can be troublesome as they will not allow the
    input to be sent to the input buffer on pressing the enter key.
+
+ * scanf() stops reading at the first whitespace it encounters.
+   [For eg., if K J is given as the input for the first scanf() in
+    char a, b; scanf("%c", &a); scanf(" %c", &b); printf("%c %c", a, b);,
+    then J will automatically be taken as the input for the second scanf(), due
+    to J getting stored in the input buffer, and K J will get printed]
+   [Since a char variable can hold a single character, therefore if KJ is given
+    as the input for the first scanf() in the above example, then also K J will
+    get printed]
 
  */
