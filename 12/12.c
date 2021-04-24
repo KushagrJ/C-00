@@ -39,10 +39,11 @@ int main(void)
     and int a = -22/6; will make a = -3.]
  * %F can also be used instead of %f.
 
- * scanf() provides keyboard input to the program. The %f instructs scanf() to
-   read a floating-point number from the keyboard, and the &weightInKilograms
-   tells scanf() to assign the input value to the variable named
-   weightInKilograms.
+ * scanf() provides keyboard input to the program. It converts string input into
+   various forms - integers, floating-point numbers, characters and C strings.
+ * The %f instructs scanf() to read a floating-point number from the keyboard,
+   and the &weightInKilograms tells scanf() to assign the input value to the
+   variable named weightInKilograms.
  * Pressing the enter key after the input makes the cursor go to the next line.
    This is the property of the terminal, and has nothing to do with scanf(). So,
    there is no need for a \n right before Your weight is...
@@ -71,5 +72,22 @@ int main(void)
    [Since a char variable can hold a single character, therefore if KJ is given
     as the input for the first scanf() in the above example, then also K J will
     get printed]
+
+ * %d and %i are both used to specify a signed decimal integer when used for
+   output (for eg., with prinf()).
+   But, for input (for eg., with scanf()), %i also allows hexadecimal
+   (if preceded by 0x) and octal (if preceded by 0), in addition to decimal. So,
+   033 would be 27 with %i but 33 with %d.
+
+ * For numerical specifiers, scanf() also accepts the signs + and - in front of
+   the numbers, if entered.
+
+ * A few examples of multiple inputs using scanf() -
+   1. scanf("%d %d", &a, &b); expects the input as int1 int2
+   2. scanf("%d,%d", &a, &b); expects the input as int1,int2
+      [%d ignores whitespaces, so int1, int2 will work as well, and so on]
+   3. scanf("%d%d", &a, &b); behaves the same as scanf("%d %d", &a, &b);
+   and so on
+
 
  */

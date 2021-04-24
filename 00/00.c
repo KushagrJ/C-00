@@ -22,6 +22,21 @@ int main(void)
    file stdio.h, which provides support for keyboard input & for displaying
    output, printf(), etc.
  * stdio.h stands for standard input/output header.
+
+ * Header files generally contain only the declarations of functions, among
+   other things, and not the functions' definitions.
+ * The compiler (or more specifically, the preprocessor) essentially copies and
+   pastes the entire contents of the respective header files in place of the
+   lines such as #include <stdio.h> during compilation.
+ * The actual definitions of functions like printf() are given in the C Standard
+   Library, which is basically a collection of important object files (i.e.,
+   the files created by the assembler right before the linking part of the
+   compilation process).
+   The source files corresponding to these important object files are generally
+   not available directly.
+ * It is the job of the linker to create a bridge between various object files,
+   libraries, etc. and finally create the executable files.
+
  * main() and printf() are functions. The parentheses identify them as the names
    of functions.
  * A C program, with some exceptions, always begins execution with the function

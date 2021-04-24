@@ -63,6 +63,11 @@ int main(void)
    with a unary operator (-) in front of it. Since 2147483648 is too large for
    int, therefore -2147483648 is stored as long, instead of int.
    [Similarly for others]
- * Lowercase format specifiers should be used for various integer types.
+ * Lowercase format specifiers should be used for various integer types other
+   than %X.
+
+ * Even though a short integer is promoted to an integer, the h modifier of
+   printf() converts it back to a short integer before printing.
+   [https://stackoverflow.com/questions/46073295/implicit-type-promotion-rules]
 
  */

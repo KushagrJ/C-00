@@ -74,6 +74,8 @@ void print_c_in_various_forms(void)
  * Normally, constants within double's range are stored as double. To make the
    compiler store such constants as float or long double, suffixes f/F or l/L
    should be used, respectively.
+   There is no format specifier for float in printf(), because when a float is
+   passed to printf(), it gets promoted to double before printf() receives it.
  * float doesn't keep track of extra significant figures. So, 2.0E20+1 will not
    be calculated correctly, but 2.0E4+1 will.
  * Complex and imaginary types are float _Complex, double _Complex,
@@ -86,7 +88,11 @@ void print_c_in_various_forms(void)
  * F can also be used instead of f.
  * %g/%G prints a value as either %f/%F or %e/%E, depending upon the value
    converted and the precision. Also, it removes any trailing zeroes from the
-   fractional portion of the result.
+   fractional portion of the result, alongwith removing the decimal-point
+   character, if it's not required.
  * Exponential form is also known as standard form / scientific notation.
+
+ * In scanf(), %f is used for float, %lf is used for double and %Lf is used for
+   long double.
 
  */

@@ -34,4 +34,6 @@ int main(void)
    int a = '\x16'; (in hexadecimal form), and so on.
  * %O is not a format specifier.
 
+ * Another way to break a line in printf() is by using a \.
+
  */

@@ -32,5 +32,10 @@ int main(void)
    location, and the d tells it to print the variable as a decimal integer
    value.
  * int a = 1; is the same as int a; and a = 1;
+ * %% can be used to print a percent sign.
+
+ * The format for using printf() is printf(Control-String, item1, item2, ...);
+   The phrase enclosed in double quotes is the Control-String, which describes
+   how the items are to be printed.
 
  */

@@ -12,7 +12,7 @@ int main(void)
 
     scanf("%c", &a);
 
-    printf("The ASCII code for %c is %d\n", a, a);
+    printf("The ASCII code for %c is %hhd\n", a, a);
 
     return 0;
 
@@ -48,5 +48,9 @@ int main(void)
    quotes.
  * char isn't signed or unsigned by default.
  * The _Bool type stores 1 (true) or 0 (false). Its size is 1 bit.
+
+ * Even though a char is promoted to an integer, the hh modifier of printf()
+   converts it back to a char before printing.
+   [https://stackoverflow.com/questions/46073295/implicit-type-promotion-rules]
 
  */
