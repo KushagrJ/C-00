@@ -110,9 +110,10 @@ int main(void)
    6. % is the remainder operator (not modulo).
       It gives the remainder that results when the integer before the % sign is
       divided by the integer after the sign.
-      [For eg., int a = 5%2; assigns 1 to a
-                int a = (-5)%3; assigns -2 to a, whereas a modulo operator
-                                                 would assign 1 to a
+      [For eg., int a = 5%3; assigns 2 to a
+                int a = (-5)%3; assigns -2 to a
+                int a = 5%(-3); assigns 2 to a
+                int a = (-5)%(-3) assigns -2 to a]
 
  * Operator precendence :-
 
