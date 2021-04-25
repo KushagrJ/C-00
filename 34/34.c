@@ -107,6 +107,13 @@ int main(void)
       In C, any fraction resulting from integer division is discarded, i.e. the
       truncation is done towards zero.
 
+   6. % is the remainder operator (not modulo).
+      It gives the remainder that results when the integer before the % sign is
+      divided by the integer after the sign.
+      [For eg., int a = 5%2; assigns 1 to a
+                int a = (-5)%3; assigns -2 to a, whereas a modulo operator
+                                                 would assign 1 to a
+
  * Operator precendence :-
 
    In C, each operator is assigned a precedence level.
@@ -121,13 +128,13 @@ int main(void)
 
    Operator precedence provides vital rules for determining the order of
    evaluation, but it doesn't necessarily determine the complete order.
-   [For eg., a = 6*15+5*20;
+   [For eg., int a = 6*15+5*20;
              Operator precedence dictates that 6*15 and 5*20 will be calculated
              before addition, but it doesn't tell about which multiplication
              will be done first.
              Here, the left-to-right order of multiplication doesn't apply, as
              the multiplications don't share an operand.]
 
-   [For eg., a = -(2+5)*6+(4+3*(2+3)); assigns -23 to a]
+   [For eg., int a = -(2+5)*6+(4+3*(2+3)); assigns -23 to a]
 
  */
