@@ -51,6 +51,6 @@ int main(void)
 
  * Even though a char is promoted to an integer, the hh modifier of printf()
    converts it back to a char before printing.
-   [https://stackoverflow.com/questions/46073295/implicit-type-promotion-rules]
+   [See 'Type conversions' in 34.c]
 
  */

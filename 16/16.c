@@ -76,6 +76,7 @@ void print_c_in_various_forms(void)
    should be used, respectively.
    There is no format specifier for float in printf(), because when a float is
    passed to printf(), it gets promoted to double before printf() receives it.
+   [See 'Type conversions' in 34.c]
  * float doesn't keep track of extra significant figures. So, 2.0E20+1 will not
    be calculated correctly, but 2.0E4+1 will.
  * Complex and imaginary types are float _Complex, double _Complex,

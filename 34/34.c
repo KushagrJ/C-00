@@ -33,12 +33,42 @@ int main(void)
 
  * The section of program between and including the braces is called a block.
 
+ * An expression consists of a combination of operators and operands.
+   [For eg., 4, -6, 4+21, a*(b+c/d)/20, q = 5*2, x = ++q%3, q > 3, etc.]
+ * Every expression has a value.
+   [For eg., the value of -4+6 is 2
+             the value of c = 3+8 is 11
+             the value of 5 > 3 is 1
+             the value of 6+(c = 3+8) is 17 (this is valid, but ill-advised)]
+
+ * A statement is a complete instruction to the computer. In C, statements are
+   indicated by a semicolon at the end.
+   [For eg., hands = 2 is just an expression (which could be a part of a larger
+             expression), but hands = 2; is a statement]
+ * The simplest statement is a null statement (;), which does nothing.
+ * Statements like 8;, a+b;, etc. are valid statements but aren't sensible, as
+   they do nothing.
+ * Not all complete instructions are statements.
+   [For eg., x = (y = 5)+6;
+             Here, y = 5 is a complete instruction, but isn't a statement]
+
+ * A side effect is the modification of a data object or a file.
+   [For eg., the main intent of C for days = 7; is to evaluate the expression,
+             and 7 gets assigned to days as a side effect; similarly, the
+             displaying of information by printf() is a side effect]
+ * A sequence point is a point in program execution at which all side effects
+   are evaluated before going on to the next step. In C, the semicolon marks a
+   sequence point, among others.
+
  * The syntax of the while loop is as follows :-
 
    while (condition)
    {
        statement(s);
    }
+
+   [For a single statement, the braces are optional]
+   [The end of the while loop's test condition marks a sequence point]
 
  * A Few Operators :-
 
@@ -131,11 +161,51 @@ int main(void)
    evaluation, but it doesn't necessarily determine the complete order.
    [For eg., int a = 6*15+5*20;
              Operator precedence dictates that 6*15 and 5*20 will be calculated
-             before addition, but it doesn't tell about which multiplication
-             will be done first.
+             before addition, but it doesn't tell which multiplication will be
+             done first.
              Here, the left-to-right order of multiplication doesn't apply, as
              the multiplications don't share an operand.]
 
    [For eg., int a = -(2+5)*6+(4+3*(2+3)); assigns -23 to a]
+
+ * Type conversions :-
+
+   Statements and expressions should normally use variables and constants of
+   just one type. But, if types are mixed, then C uses a set of rules to make
+   type conversions automatically.
+
+   1. When appearing in an expression, char and short (both signed and unsigned)
+      are automatically converted to signed int. These are called promotions.
+      If short is the same size as int on a system, then unsigned short gets
+      converted to unsigned int.
+      Previously, float was automatically converted to double. But, under the
+      current C standard, float isn't converted to double, unless necessary.
+      [For eg., previously, float*float produced a double result, but now,
+       float*float produces a float result]
+
+   2. In any operation involving two types, both values are converted to the
+      higher ranking of the two types.
+      The ranking of types, from highest to lowest, is long double, double,
+      float, unsigned long long, long long, unsigned long, long, unsigned int
+      and int.
+      [For eg., (float*float)+(float*double)
+                Here, (float*float) is done without promotion. Promotion occurs
+                in (float*double) and the final addition.]
+
+   3. In an assignment statement, the final result of the calculations is
+      converted to the type of the variable being assigned the value.
+      This can result in either a promotion or a demotion.
+      Demotion can cause implementation-dependent or undefined behaviour in
+      certain cases.
+
+   4. When passed as function arguments, char and short are converted to int,
+      and float is converted to double.
+
+   [https://stackoverflow.com/questions/46073295/implicit-type-promotion-rules]
+
+ * We can also convert types explicitly by using the cast operator, i.e. by
+   preceding the quantity with the keyword of the desired data type enclosed in
+   parentheses.
+   [For eg., num = (int) 1.6 + (int) 2.3;]
 
  */

@@ -68,6 +68,6 @@ int main(void)
 
  * Even though a short integer is promoted to an integer, the h modifier of
    printf() converts it back to a short integer before printing.
-   [https://stackoverflow.com/questions/46073295/implicit-type-promotion-rules]
+   [See 'Type conversions' in 34.c]
 
  */
