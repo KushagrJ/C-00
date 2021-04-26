@@ -45,6 +45,12 @@ int main(void)
  * When this program is compiled, DENSITY and PROMPT get substituted with their
    respective defined values. This is called compile-time substitution. Such
    defined constants are often termed manifest constants.
+   [In this program, printf("%s\n", PROMPT); gets replaced with
+    printf("%s\n", "Hi! What's your first name?");
+    If we give a format specifier in a string item instead of in the
+    control-string, then it wouldn't be treated as a format specifier. Rather,
+    it would just be treated as a regular string.
+    For eg., printf("%s", "%d"); prints %d]
  * Another way to define symbolic constants is to use the const keyword.
    [For eg., const int a = 22;
              const char hello[10] = "Hello";]
@@ -170,5 +176,10 @@ int main(void)
         It specifies the maximum field width. scanf() stops reading when the
         maximum field width is reached or at the first whitespace, whichever
         comes first.
+
+ * The return value of scanf() is the number of items that it successfully
+   reads. If it reads no items, which happens if a non-numeric string is given
+   as the input when scanf() expects a number, then it returns the value 0.
+   It returns EOF when it detects end of file.
 
  */

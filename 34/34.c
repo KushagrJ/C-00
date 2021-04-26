@@ -31,7 +31,8 @@ int main(void)
 
 /* Trivia
 
- * The section of program between and including the braces is called a block.
+ * The section of program between and including the braces is called a block,
+   or a compound statement.
 
  * An expression consists of a combination of operators and operands.
    [For eg., 4, -6, 4+21, a*(b+c/d)/20, q = 5*2, x = ++q%3, q > 3, etc.]
@@ -207,5 +208,7 @@ int main(void)
    preceding the quantity with the keyword of the desired data type enclosed in
    parentheses.
    [For eg., num = (int) 1.6 + (int) 2.3;]
+   It's good practice to not rely upon automatic conversions, and instead make
+   the choice of types explicit.
 
  */
