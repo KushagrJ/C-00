@@ -49,8 +49,9 @@ int main(void)
  * char isn't signed or unsigned by default.
  * The _Bool type stores 1 (true) or 0 (false). Its size is 1 bit.
 
- * Even though a char is promoted to an integer, the hh modifier of printf()
-   converts it back to a char before printing.
+ * Even though a char is promoted to an integer (i.e. the ASCII value of the
+   character), the hh modifier of printf() converts it back to a char before
+   printing.
    [See 'Type conversions' in 34.c]
 
  */

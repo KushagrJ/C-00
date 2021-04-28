@@ -39,3 +39,25 @@ void Temperatures(double fahr)
            "and %.2f in kelvin\n\n", celsius, kelvin);
 
 }
+
+
+
+
+
+/* Trivia
+
+ * while (scanf("%lf", &fahr) == 1) can also be simply written as
+   while (scanf("%lf", &fahr)), as the while loop executes if the value
+   of the expression inside the parentheses (i.e. the return value of scanf() in
+   this case) is 1.
+ * A while loop like while (any non-zero value) will loop forever.
+ * while (a != 0) and while (a) are the same thing, as C considers all non-zero
+   values as true.
+ * Also, after a non-numeric character is entered for scanf("%lf", &fahr), it
+   gets stored in the input buffer, ready to be read by an upcoming scanf(),
+   if applicable.
+
+ * foo = function(); 'runs' the function and then assigns the function's return
+   value to foo.
+
+ */

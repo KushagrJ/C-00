@@ -37,10 +37,15 @@ int main(void)
  * An expression consists of a combination of operators and operands.
    [For eg., 4, -6, 4+21, a*(b+c/d)/20, q = 5*2, x = ++q%3, q > 3, etc.]
  * Every expression has a value.
-   [For eg., the value of -4+6 is 2
+   [For eg., the value of 9 is 9
+             the value of -4+6 is 2
              the value of c = 3+8 is 11
              the value of 5 > 3 is 1
+             the value of 2 == 0 is 0
              the value of 6+(c = 3+8) is 17 (this is valid, but ill-advised)]
+   [Although true expressions evaluate to 1 by C, it also considers every other
+    non-zero value (i.e. a non zero integer/float or a non-null character)
+    as true; only 0 is regarded as false]
 
  * A statement is a complete instruction to the computer. In C, statements are
    indicated by a semicolon at the end.
@@ -69,7 +74,18 @@ int main(void)
    }
 
    [For a single statement, the braces are optional]
+   [Indenting the statements won't make a difference if they aren't written
+    inside braces; only the first statement would be considered part of the
+    loop and the remaining statements would be executed after the while loop
+    has finished looping]
    [The end of the while loop's test condition marks a sequence point]
+   [An example to know how many times a while loop has executed -
+    int count = 0;
+    while (condition)
+    {
+        statement(s);
+        count++;
+    }]
 
  * A Few Operators :-
 
