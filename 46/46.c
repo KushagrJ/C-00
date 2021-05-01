@@ -6,11 +6,9 @@
 int main(void)
 {
 
-  int num;
-
     printf("n   n cubed\n");
 
-    for (num = 1; num <= 9; num++)
+    for (int num = 1; num <= 9; num++)
         printf("%d   %4d\n", num, num*num*num);
 
     return 0;
@@ -60,10 +58,11 @@ int main(void)
        statement(s);
    }
 
+   [The for loop is an entry-controlled loop]
    [For a single statement, the braces are optional]
    [Indenting the statements won't make a difference if they aren't written
     inside braces; only the first statement would be considered part of the
-    loop and the remaining statements would be executed after the while loop
+    loop and the remaining statements would be executed after the for loop
     has finished looping]
    [The initialization statement is executed just once, when the loop first
     starts. It doesn't even have to be the initialization of a counter; it can
@@ -79,8 +78,7 @@ int main(void)
     For eg., i++, a = i*j; becomes no longer undefined (due to the comma).]
    [For multiple conditions, logical operators are used]
 
- * char ch;
-   for (ch = 'a'; ch <= 'z'; ch++)
+ * for (char ch = 'a'; ch <= 'z'; ch++)
        printf("The ASCII value of %c is %d\n", ch, ch);
 
    Output - The ASCII value of a is 97
@@ -90,9 +88,8 @@ int main(void)
             The ASCII value of y is 121
             The ASCII value of z is 122
 
- * int x;
-   int y = 55;
-   for (x = 1; y <= 75; y = (++x*5)+50)
+ * int y = 55;
+   for (int x = 1; y <= 75; y = (++x*5)+50)
        printf("%d  %d\n", x, y);
 
    Output - 1  55
@@ -103,9 +100,8 @@ int main(void)
 
  * One or more expressions can be left blank as well in a for loop.
 
-   int n;
    int ans = 2;
-   for (n = 3; ans <= 25; )
+   for (int n = 3; ans <= 25; )
        ans = ans*n;
    printf("n = %d; ans = %d\n", n , ans);
 
@@ -122,5 +118,29 @@ int main(void)
    foo %= bar is the same as foo = foo%bar
    [These have the same low precedence like =, i.e. less than that of the
     relational and arithmetic operators]
+
+ * The general syntax of the do while loop is as follows :-
+
+   do {
+       statement(s);
+   } while (condition);
+
+   [The do while loop is an exit-controlled loop]
+   [For a single statement, the braces are optional]
+   [Indenting the statements won't make a difference if they aren't written
+    inside braces; only the first statement would be considered part of the
+    loop and the remaining statements would be executed after the do while loop
+    has finished looping]
+   [The use of do while loops should be restricted to those cases that require
+    at least one iteration]
+
+ * Usually, an entry-controlled loop is preferred over an exit-controlled one.
+
+ * What can be done with a while loop can also be done with a for loop, and
+   vice versa.
+   The for loop is generally used when there is a known number of iterations,
+   and the while loop is used when the number of iterations is not known in
+   advance.
+   The for loop is usually nice because it is concise.
 
  */

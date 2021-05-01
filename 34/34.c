@@ -66,13 +66,14 @@ int main(void)
    are evaluated before going on to the next step. In C, the semicolon marks a
    sequence point, among others.
 
- * The syntax of the while loop is as follows :-
+ * The general syntax of the while loop is as follows :-
 
    while (condition)
    {
        statement(s);
    }
 
+   [The while loop is an entry-controlled loop]
    [For a single statement, the braces are optional]
    [Indenting the statements won't make a difference if they aren't written
     inside braces; only the first statement would be considered part of the

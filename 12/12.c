@@ -73,6 +73,11 @@ int main(void)
     as the input for the first scanf() in the above example, then also K J will
     get printed]
 
+ * scanf() reads as many non-whitespace characters as entered (unless the
+   positiveInt modifier is used with it), even if the target variable, etc.
+   isn't large enough to hold the input.
+   What happens afterwards is undefined behaviour.
+
  * %d and %i are both used to specify a signed decimal integer when used for
    output (for eg., with prinf()).
    But, for input (for eg., with scanf()), %i also allows hexadecimal

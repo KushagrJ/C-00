@@ -39,6 +39,10 @@ int main(void)
 /* Trivia
 
  * string.h contains the prototype of the strlen() function, among others.
+ * strlen() is used to find the length of a string. It stops counting when it
+   encounters the null character (discussed below).
+ * When strlen(foo) is used directly as an argument for printf(), then the
+   format specifier to be used with it is %zu.
 
  * In this program, the C preprocessor is used to define symbolic constants
    (DENSITY and PROMPT) to be used within this program.
@@ -55,9 +59,39 @@ int main(void)
    [For eg., const int a = 22;
              const char hello[10] = "Hello";]
 
- * An array is a collection of several memory cells in a row. More formally, it
-   is an ordered sequence of data elements of one type.
+ * An array is a collection of several memory cells in a row.
+   More formally, it is an ordered sequence of data elements of one type, which
+   can be any data type.
+   Arrays enable the user to store several items of related information in a
+   convenient fashion.
    Brackets are used to identify an array.
+
+ * The elements of an array are accessed by using an integer index, starting
+   with 0.
+   An array element can be used in the same way as a variable of the same type.
+   [For eg., float incomes[20]; declares an array called incomes which can hold
+             20 float values.
+             incomes[2] = 1.23; assigns 1.23 to the third element of incomes.
+             scanf("%f", &incomes[5]); reads a float value into the sixth
+             element of incomes.]
+
+ * A pitfall with arrays is that, in the interest of speed of execution, C
+   doesn't check to see whether a valid index is used or not.
+   So, the compiler won't look to see whether incomes[30] exists or not for a
+   statement like incomes[30] = 2.56;, making the program placing this data is
+   a location possibly used for other data, potentially corrupting the output of
+   the program or even causing it to abort.
+
+ * The elements of an array can be looped over with loops by using a variable
+   index.
+
+ * To be understood properly after learning arrays and pointers -
+   An array can be defined (i.e. declared and initialized) without specifying a
+   size. The compiler will infer the size from the initialization statement.
+   [For eg., int a[] = {1,2,3};]
+   An array can be declared without specifying a size in multiple cases.
+   [See 'How to create an array without declaring the size in C' from
+    StackOverflow]
 
  * C does not have a native string data type. By convention, the language uses
    arrays of char for strings.
@@ -72,8 +106,8 @@ int main(void)
    encounters.
 
  * C uses the null character, i.e. \0, to mark the end of a string. It means
-   that an array for a string must have at least one more cell than the number
-   of characters to be stored.
+   that for an array to be a character string, it must have at least one more
+   cell than the number of characters to be stored.
    In this program, name can hold upto 39 characters in addition to the null
    character.
    [For eg., 'x' consists of a single character 'x', whereas "x" consists of two
@@ -81,10 +115,24 @@ int main(void)
  * In this program, if Kushagr is given as the input for name, then the first
    seven cells of the char array store Kushagr, the eighth cell stores \0 and
    the remaining 32 cells are garbage (in general).
- * The null character doesn't need to be put in a string manually. The compiler
-   takes care of putting in the null character.
+ * The null character doesn't need to be put in a string manually when enclosed
+   in double quotes. The compiler takes care of putting in the null character in
+   this case.
+   The null character is added by the compiler only if there is room for it.
+   [For eg., char name[7] = "Kushagr"; - The compiler doesn't add a null
+             character, making name a normal array of characters, instead of a C
+             string, as it lacks the null character.]
+   Functions defined for C strings, such as strlen(), don't work on normal
+   arrays of characters that lack the null character. They might work in a few
+   cases, but that is mostly by chance.
    Also, the amount of memory to set aside to store a string doesn't need to be
    specified when used with #define.
+   [For eg., char arr[] = "Hello"; - The compiler adds a null character at the
+             end, making the size of arr 6 bytes.
+             char arr[] = "Hello\0" - The compiler adds a null character at the
+             end even though it has been added manually, making the size of arr
+             7 bytes (Hello + 2 null characters). strlen(arr) returns 5,
+             because it can't tell the difference between the null characters.]
 
  * sizeof is an operator (not a function) which returns the amount of memory
    (in bytes) that a quantity or a type occupies.
@@ -98,11 +146,6 @@ int main(void)
     directly using sizeof foo as an argument for printf()]
    [For eg., printf("%zu", sizeof(char)); prints 1
              printf("%zu", sizeof 22); prints 4 on this system]
-
- * strlen() is used to find the length of a string. It stops counting when it
-   encounters the null character.
- * When strlen(foo) is used directly as an argument for printf(), then the
-   format specifier to be used with it is %zu.
 
  * char questionAboutWeight[30] = "what's your weight in pounds?"; works but
    char questionAboutWeight[30]; questionAboutWeight = "what's ..."; doesn't,
