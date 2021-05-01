@@ -71,12 +71,15 @@ int main(void)
     loop]
    [The updation statement is executed at the end of each execution of the loop.
     Again, the updation statement doesn't necessarily have to update something.]
-   [Multiple initialization and updation statements can be written with the for
-    loop by separating them with commas.
-    The commas act as sequence points, so all side effects to the left of the
-    commas take place before a program moves to the right of the commas.
-    For eg., i++, a = i*j; becomes no longer undefined (due to the comma).]
-   [For multiple conditions, logical operators are used]
+
+ * Multiple expressions (not statements) can be written when inside parentheses
+   by separating them with commas (used mostly in loops).
+   The commas act as sequence points, so all side effects to the left of the
+   commas take place before a program moves to the right of the commas.
+   For eg., i++, a = i*j becomes no longer undefined (due to the comma).]
+ * (expression1, expression2) - First, expression1 is evaluated, then
+   expression2 is evaluated, and finally the value of expression2 is returned
+   for the whole expression.
 
  * for (char ch = 'a'; ch <= 'z'; ch++)
        printf("The ASCII value of %c is %d\n", ch, ch);

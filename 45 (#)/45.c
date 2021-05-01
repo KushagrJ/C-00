@@ -16,7 +16,6 @@ int main(void)
     while (scanf("%lf", &fahr) == 1)
     {
         Temperatures(fahr);
-
         printf("Enter a temperature in degrees fahrenheit (q to quit): ");
     }
 
