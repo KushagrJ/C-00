@@ -163,28 +163,16 @@ int main(void)
                 int a = 5%(-3); assigns 2 to a
                 int a = (-5)%(-3) assigns -2 to a]
 
- * Operator precendence :-
+ * Operator precedence :-
 
    In C, each operator is assigned a precedence level.
-   Whatver is enclosed in parentheses is executed first.
+   Whatever is enclosed in parentheses is executed first.
    Multiplication and division have a higher precedence than addition and
    subtraction.
    If two operators having the same precedence share an operand, then they are
    executed according to the order in which they occur in the statement.
-   For most operators, the order is from left to right.
-
- * Order of evaluation :-
-
-   Operator precedence provides vital rules for determining the order of
-   evaluation, but it doesn't necessarily determine the complete order.
-   [For eg., int a = 6*15+5*20;
-             Operator precedence dictates that 6*15 and 5*20 will be calculated
-             before addition, but it doesn't tell which multiplication will be
-             done first.
-             Here, the left-to-right order of multiplication doesn't apply, as
-             the multiplications don't share an operand.]
-
-   [For eg., int a = -(2+5)*6+(4+3*(2+3)); assigns -23 to a]
+   For most operators, the associativity is from left to right.
+   [The complete precedence and order of evaluation are dicussed later]
 
  * Type conversions :-
 

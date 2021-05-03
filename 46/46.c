@@ -76,10 +76,13 @@ int main(void)
    by separating them with commas (used mostly in loops).
    The commas act as sequence points, so all side effects to the left of the
    commas take place before a program moves to the right of the commas.
-   For eg., i++, a = i*j becomes no longer undefined (due to the comma).]
+   For eg., i++, a = i*j becomes no longer undefined (due to the comma
+            'operator').
  * (expression1, expression2) - First, expression1 is evaluated, then
    expression2 is evaluated, and finally the value of expression2 is returned
    for the whole expression.
+ * The comma operator shouldn't be confused with the commas used in fuction call
+   expressions, declarations, initializations, etc.
 
  * for (char ch = 'a'; ch <= 'z'; ch++)
        printf("The ASCII value of %c is %d\n", ch, ch);

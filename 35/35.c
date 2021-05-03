@@ -68,4 +68,104 @@ int main(void)
              (b) a = (b/2)+5*(1+b++);
              (c) x = y++ + y++;]
 
+ * Operator precedence :-
+
+   Parentheses are used to define custom precedence.
+   So, whatver is enclosed in parentheses is executed first.
+   [These parentheses aren't operators]
+
+   Precedence   Operator   Description                             Associativity
+
+       01          ++      Postfix increment                       Left-to-right
+                   --      Postfix decrement
+                   ()      Function call (different from the afore-
+                                          mentioned parentheses)
+                   []      Array subscript
+                   .       Structure and union member access
+                   ->      Structure and union member access
+                           through pointer
+           (type) {list}   Compound literal
+
+       02          ++      Prefix increment                        Right-to-left
+                   --      Prefix decrement
+                   +       Unary plus
+                   -       Unary minus
+                   !       Logical NOT
+                   ~       Bitwise NOT
+                  (type)   Cast
+                   *       Indirection (dereference)
+                   &       Address-of
+                  sizeof   Size-of
+                _Alignof   Alignment requirement
+
+       03          *       Multiplication                          Left-to-right
+                   /       Division
+                   %       Remainder
+
+       04          +       Addition                                Left-to-right
+                   -       Subtraction
+
+       05          <<      Bitwise left shift                      Left-to-right
+                   >>      Bitwise right shift
+
+       06          <       Relational less than                    Left-to-right
+                   <=      Relational less than or equal to
+                   >       Relational greater than
+                   >=      Relational greater than or equal to
+
+       07          ==      Relational equal to                     Left-to-right
+                   !=      Relational not equal to
+
+       08          &       Bitwise AND                             Left-to-right
+
+       09          ^       Bitwise XOR                             Left-to-right
+
+       10          |       Bitwise OR                              Left-to-right
+
+       11          &&      Logical AND                             Left-to-right
+
+       12          ||      Logical OR                              Left-to-right
+
+       13          ?:      Ternary conditional                     Right-to-Left
+
+       14          =       Assignment                              Right-to-Left
+                   +=      Assignment by sum
+                   -=      Assignment by difference
+                   *=      Assignment by product
+                   /=      Assignment by quotient
+                   %=      Assignment by remainder
+                   <<=     Assignment by bitwise left shift
+                   >>=     Assignment by bitwise right shift
+                   &=      Assignment by bitwise AND
+                   ^=      Assignment by bitwise XOR
+                   |=      Assignment by bitwise OR
+
+       15          ,       Comma operator                          Left-to-right
+
+ * Order of evaluation :-
+
+   Operator precedence provides vital rules for determining the order of
+   evaluation, but it doesn't necessarily determine the complete order.
+   [For eg., int a = 6*15+5*20;
+             Operator precedence dictates that 6*15 and 5*20 will be calculated
+             before addition, but it doesn't tell which multiplication will be
+             done first.
+             Here, the left-to-right associativity of multiplication doesn't
+             apply, as the multiplications don't share an operand.]
+
+   Unlike Java, the order of evaluation is not necessarily left to right in C.
+   In C, the order of evaluation is undefined, unless sequence points, etc. are
+   used.
+
+   Operator precedence dictates which operations have to be evaluated before the
+   result of those operations are used together with the rest of the expression.
+   Order of evaluation is the actual order of execution of function arguments in
+   a function call, sub-expressions within an expression, etc.
+   [For eg., f1()+f2()+f3() is evaluated as (f1()+f2())+f3(), but the function
+             call to f1() may be evaluated first, last or in between the calls
+             to f2() & f3()
+             a = ++a*(a++ + 5) - a++ may or may not be calculated before ++a]
+
+ * For eg., int a = -(2+5)*6+(4+3*(2+3)); assigns -23 to a]
+
  */

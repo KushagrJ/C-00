@@ -49,4 +49,12 @@ int main(void)
  * int is a C keyword identifying one of the basic C data types. For example,
    int can't be used as the name of a function or a variable.
 
+ * Previously, writing just main() was allowed. But, under the current C
+   standard, int main() or void main() has to be used.
+   Although void main() is valid, it should not be used.
+ * function() means that the function can take any number of arguments, whereas
+   function(void) means that the function can take zero arguments.
+   In the case of main(), it doesn't matter either way in most cases, unless
+   the user writes their own call to main(), etc.
+
  */
