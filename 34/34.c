@@ -43,9 +43,9 @@ int main(void)
              the value of 5 > 3 is 1
              the value of 2 == 0 is 0
              the value of 6+(c = 3+8) is 17 (this is valid, but ill-advised)]
-   [Although true expressions evaluate to 1 by C, it also considers every other
-    non-zero value (i.e. a non zero integer/float or a non-null character)
-    as true; only 0 is regarded as false]
+   [Although generally, true expressions evaluate to 1 by C, it also considers
+    every other non-zero value (i.e. a non zero integer/float or a non-null
+    character) as true; only 0 is regarded as false]
 
  * A statement is a complete instruction to the computer. In C, statements are
    indicated by a semicolon at the end.
@@ -65,6 +65,32 @@ int main(void)
  * A sequence point is a point in program execution at which all side effects
    are evaluated before going on to the next step. In C, the semicolon marks a
    sequence point, among others.
+ * Sequence points in C -
+   (a) Between the evaluations of the function designator and actual arguments
+       in a function call and the actual call
+   (b) Between the evaluations of the first and second operands of the operators
+       &&, || and ,
+   (c) Between the evaluations of the first operand of the conditional ?:
+       operator and whichever of the second and third operands is evaluated
+   (d) The end of a full declarator
+   (e) Between the evaluation of a full expression and the next full expression
+       to be evaluated.
+       Full expressions - (1) an initializer
+                          (2) the expression in an expression statement
+                          (3) the controlling expression of a selection
+                              statement (if or switch)
+                          (4) the controlling expression of a while or do
+                              statment
+                          (5) each of the expressions of a for statement
+                          (6) the expression in a return statement
+   (f) Immediately before a library function returns
+   (g) After the actions associated with each formatted input/output function
+       conversion specifier
+   (h) Immediately before and immediately after each call to a comparison
+       function, and also between any call to a comparison function and any
+       movement of the objects passed as arguments to that call
+ * An important thing to note about sequence points is that they are not global,
+   but rather should be regarded as a set of local arguments.
 
  * The general syntax of the while loop is as follows :-
 
@@ -79,7 +105,6 @@ int main(void)
     inside braces; only the first statement would be considered part of the
     loop and the remaining statements would be executed after the while loop
     has finished looping]
-   [The end of the while loop's test condition marks a sequence point]
    [An example to know how many times a while loop has executed -
     int count = 0;
     while (condition)
@@ -172,7 +197,7 @@ int main(void)
    If two operators having the same precedence share an operand, then they are
    executed according to the order in which they occur in the statement.
    For most operators, the associativity is from left to right.
-   [The complete precedence and order of evaluation are dicussed later]
+   [The complete precedence and order of evaluation are discussed later]
 
  * Type conversions :-
 

@@ -40,7 +40,7 @@ int main(void)
    If a non-zero numeric value is assigned to a _Bool variable, it is
    automatically changed to 1.
    Including the stdbool.h header file makes bool an alias for _Bool and defines
-   true and false as symbolic constants for the value 1 and 0.
+   true and false as symbolic constants for the values 1 and 0.
 
  * The precedence of the relational operators is less than that of the
    arithmetic operators, and greater than that of the assignment operators.
