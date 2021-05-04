@@ -1,12 +1,46 @@
 // C17 Standard
 
 #include <stdio.h>
+#include <ctype.h>
 
 
 int main(void)
 {
 
-    // A Word-Count Program (from book)
+    char c;
+    long numberOfCharacters = 0L;
+    int numberOfWords = 0;
+    int numberOfLines = 0;
+
+    // To keep track of the beginnings and ends of words.
+    _Bool cIsPartOfAWord = 0;
+
+    printf("Enter text to be analysed (| to terminate) :-\n");
+
+    while ((c = getchar()) != '|')
+    {
+        numberOfCharacters++;
+
+        if (c == '\n')
+            numberOfLines++;
+
+        // If c is not a whitespace and not yet part of a word, then it must
+        // mark the beginning of a word.
+        if (!isspace(c) && !cIsPartOfAWord)
+        {
+            cIsPartOfAWord = 1;
+            numberOfWords++;
+        }
+
+        // If c is a whitespace and is being considered part of a word, then it
+        // must mark the end of that word.
+        if (isspace(c) && cIsPartOfAWord)
+            cIsPartOfAWord = 0;
+    }
+
+    printf("Number of lines: %d\n", numberOfLines);
+    printf("Number of words: %d\n", numberOfWords);
+    printf("Number of characters: %ld\n", numberOfCharacters);
 
     return 0;
 
@@ -74,8 +108,8 @@ int main(void)
    (These don't modify the original argument; rather they return the modified
     value)
    tolower(foo) - converts uppercase letters to lowercase letters; no effect on
-                  other characters)
+                  other characters
    toupper(foo) - converts lowercase letters to uppercase letters; no effect on
-                  other characters)
+                  other characters
 
  */

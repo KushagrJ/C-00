@@ -64,23 +64,25 @@ int main(void)
     inside braces; only the first statement would be considered part of the
     loop and the remaining statements would be executed after the for loop
     has finished looping]
-   [The initialization statement is executed just once, when the loop first
+   [The initialization expression is executed just once, when the loop first
     starts. It doesn't even have to be the initialization of a counter; it can
-    be any statement (like printf();)]
-   [The condition statement is evaluated before each potential execution of the
+    be any expression (like printf())]
+   [The condition expression is evaluated before each potential execution of the
     loop]
-   [The updation statement is executed at the end of each execution of the loop.
-    Again, the updation statement doesn't necessarily have to update something.]
+   [The updation expression is executed at the end of each execution of the
+    loop. Again, the updation expression doesn't necessarily have to update
+    something.]
 
- * Multiple expressions (not statements) can be written when inside parentheses
-   by separating them with commas (used mostly in loops).
+ * Multiple expressions (not statements) can be written (not necessarily inside
+   parentheses) by separating them with commas (used mostly in loops).
    The commas act as sequence points, so all side effects to the left of the
    commas take place before a program moves to the right of the commas.
    For eg., i++, a = i*j becomes no longer undefined (due to the comma
             'operator').
- * (expression1, expression2) - First, expression1 is evaluated, then
-   expression2 is evaluated, and finally the value of expression2 is returned
-   for the whole expression.
+ * (expression1, expression2, expression3, ...) - First, expression1 is
+   evaluated, then expression2 is evaluated, then expression3 is evaluated, ...,
+   and finally the value of the last expression is returned for the whole
+   expression.
  * The comma operator shouldn't be confused with the commas used in fuction call
    expressions, declarations, initializations, etc.
 

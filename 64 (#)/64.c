@@ -74,4 +74,20 @@ int main(void)
    [An else goes with the most recent if, regardless of indentation, unless
     braces state otherwise]
 
+ * A shorthand way of the if-else statement is the conditional operator.
+   It is the only ternary operator in C, currently.
+   Usually, an if-else statement can accomplish the same thing as the
+   conditional operator. The conditional operator version, however, is more
+   compact and, depending on the compiler, may result in a compact program code.
+
+   The general syntax of using the conditional operator is as follows :-
+   condition ? expression 1 : expression 2
+   [If the condition's value is non-zero (true), then the whole expression has
+    the same value as expression 1.
+    If the condition's value is zero (false), then the whole expression has the
+    same value as expression 2.]
+   [For eg., (a) maxValue = (a > b) ? a : b;
+             (b) printf("There %s %d %s\n", n == 1 ? "is" : "are",
+                        n, n == 1 ? "book" : "books");]
+
  */
