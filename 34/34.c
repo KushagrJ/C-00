@@ -32,7 +32,7 @@ int main(void)
 /* Trivia
 
  * The section of program between and including the braces is called a block,
-   or a compound statement.
+   or a compound statement. It is also considered as a single statement.
 
  * An expression consists of a combination of operators and operands.
    [For eg., 4, -6, 4+21, a*(b+c/d)/20, q = 5*2, x = ++q%3, q > 3, etc.]
@@ -105,6 +105,13 @@ int main(void)
     inside braces; only the first statement would be considered part of the
     loop and the remaining statements would be executed after the while loop
     has finished looping]
+   [Since the while statement is a single statement, therefore for a loop such
+    as while (condition)
+           while (condition)
+           {
+               statement(s);
+           },
+    braces are not required for the first while loop - Similarly for others]
    [An example to know how many times a while loop has executed -
     int count = 0;
     while (condition)

@@ -1,10 +1,44 @@
 // C17 Standard
 
 #include <stdio.h>
+#include <ctype.h>
 
 
 int main(void)
 {
+
+    char c;
+
+    printf("Enter a lowercase letter (# to exit): ");
+
+    while ((c = getchar()) != '#')
+    {
+        if (c == '\n')
+            continue;
+
+        if (islower(c))
+            switch (c)
+            {
+                case 'a' :
+                    printf("Argali, a wild sheep of Asia\n");
+                    break;
+                case 'b' :
+                    printf("Babirusa, a wild pig of Malay\n");
+                    break;
+                case 'c' :
+                    printf("Coati, a racoon-like mammal\n");
+                    break;
+                default :
+                    printf("That's a stumper!\n");
+            }
+        else
+            printf("I recongnize only lowercase letters!\n");
+
+        while (getchar() != '\n')
+            continue;
+
+        printf("Enter a lowercase letter (# to exit): ");
+    }
 
     return 0;
 
@@ -32,5 +66,50 @@ int main(void)
 
  * continue; and break; shouldn't be used if they complicate rather than
    simplify a code.
+
+ * To choose between several alternatives, the switch statement is often more
+   convenient than the if-else statement.
+
+   The general syntax of a switch statement is as follows :-
+
+   switch (foo)
+   {
+       case label1 :
+           statement(s);
+           break;
+       case label2 :  // If needed
+           statement(s);
+           break;
+       *** More cases ***  // If needed
+       default :
+           statement(s);
+   }
+
+   [Without break;, every statement from the matched label to the end of the
+    switch would be processed]
+   [break; works with loops and switch, but continue; works only with loops]
+   [If continue; is used with a switch which is inside a loop, then it will
+    cause the program to skip over the rest of the loop, including the other
+    parts of the switch]
+   [foo must be the one with an integer value (including char)]
+   [label1, label2, ... must be integer-type (including char) constants or
+    expressions containing only integer (including char) constants]
+   [Multiple labels can be used for the same case like this -
+    case label1 :
+    case label2 :
+        statement(s);
+        break;
+    Here, due to the absence of break; in case label1, the program would
+    process the statement(s) of case label2 if label1 is matched. In essence,
+    both the labels would refer to the same statement(s).]
+
+ * while (getchar() != '\n')
+       continue;
+   This makes the program read every character the user has input including the
+   newline character which stays in the input buffer upon pressing enter
+   (for eg., if the user inputs book instead of b), and basically ignore it so
+   that for the next getchar(), the input buffer is empty.
+
+ * The goto statement shouldn't be used.
 
  */

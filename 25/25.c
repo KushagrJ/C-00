@@ -224,5 +224,6 @@ int main(void)
    reads. If it reads no items, which happens if a non-numeric string is given
    as the input when scanf() expects a number, then it returns the value 0.
    It returns EOF when it detects end of file.
+   [Useful for input validation]
 
  */
