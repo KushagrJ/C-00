@@ -119,13 +119,17 @@ int main(void)
    in double quotes. The compiler takes care of putting in the null character in
    this case. Also, the null character doesn't need to be put in a string
    manually when used with scanf("%s", foo);. scanf() adds it automatically.
+   On the other hand, for eg., if characters are added one by one to an array,
+   then the null character will have to be added at the end manually in order to
+   make it a string.
    The null character is added by the compiler only if there is room for it.
    [For eg., char name[7] = "Kushagr"; - The compiler doesn't add a null
              character, making name a normal array of characters, instead of a C
              string, as it lacks the null character.]
-   Functions defined for C strings, such as strlen(), don't work on normal
-   arrays of characters that lack the null character. They might work in a few
-   cases, but that is mostly by chance (i.e. undefined behaviour).
+   Functions defined for C strings, such as strlen(), and functions like
+   printf("%s", foo); don't work properly on normal arrays of characters that
+   lack the null character. They might work as expected in a few cases, but that
+   is mostly by chance (i.e. undefined behaviour).
    Also, the amount of memory to set aside to store a string doesn't need to be
    specified when used with #define.
    [For eg., char arr[] = "Hello"; - The compiler adds a null character at the
