@@ -52,7 +52,7 @@ int main(void)
    doesn't consume the newline character. So, when another scanf() is
    encountered later in the program, a newline character is ready to be read by
    it.
- * Some format specifiers, such as %d and %f, skip whitespace characters, such
+ * Some format specifiers, such as %d, %f and %s, skip leading whitespaces, such
    as spaces, \n, \t and \r. But, others, such as %c, do not. So, if a
    whitespace character (for eg., \n) is ready to be read by an upcoming
    scanf("%c", &variableName);, it will simply accept the newline character as
@@ -60,9 +60,10 @@ int main(void)
  * scanf(" %c", &variableName); (space can be replaced with \n, \t, \r, etc.)
    will ignore all leading whitespaces, and
    scanf("%c ", &variableName); (space can be replaced with \n, \t, \r, etc.)
-   will ignore all trailing whitespaces. Thus, statements like
-   scanf("%d\n", &variableName); can be troublesome as they will not allow the
-   input to be sent to the input buffer on pressing the enter key.
+   will ignore all trailing whitespaces.
+   Thus, statements like scanf("%d\n", &variableName); can be troublesome as
+   they will not allow the input to be sent to the input buffer on pressing the
+   enter key.
 
  * scanf() stops reading at the first whitespace it encounters.
    [For eg., if K J is given as the input for the first scanf() in
@@ -72,11 +73,14 @@ int main(void)
    [Since a char variable can hold a single character, therefore if KJ is given
     as the input for the first scanf() in the above example, then also K J will
     get printed]
+   [scanf() leaves all of the trailing newline (or whitespace) onward characters
+    in the input buffer with any specifier]
 
- * scanf() reads as many non-whitespace characters as entered (unless the
-   positiveInt modifier is used with it), even if the target variable, etc.
-   isn't large enough to hold the input.
+ * scanf() successfully reads as many valid non-whitespace characters as entered
+   (unless the positiveInt modifier is used with it), even if the target
+   variable, etc. isn't large enough to hold the input, causing overflows.
    What happens afterwards is undefined behaviour.
+   [For eg., If 123456789123456789 is given as input for a scanf("%d", &foo);]
 
  * %d and %i are both used to specify a signed decimal integer when used for
    output (for eg., with prinf()).

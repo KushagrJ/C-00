@@ -117,14 +117,15 @@ int main(void)
    the remaining 32 cells are garbage (in general).
  * The null character doesn't need to be put in a string manually when enclosed
    in double quotes. The compiler takes care of putting in the null character in
-   this case.
+   this case. Also, the null character doesn't need to be put in a string
+   manually when used with scanf("%s", foo);. scanf() adds it automatically.
    The null character is added by the compiler only if there is room for it.
    [For eg., char name[7] = "Kushagr"; - The compiler doesn't add a null
              character, making name a normal array of characters, instead of a C
              string, as it lacks the null character.]
    Functions defined for C strings, such as strlen(), don't work on normal
    arrays of characters that lack the null character. They might work in a few
-   cases, but that is mostly by chance.
+   cases, but that is mostly by chance (i.e. undefined behaviour).
    Also, the amount of memory to set aside to store a string doesn't need to be
    specified when used with #define.
    [For eg., char arr[] = "Hello"; - The compiler adds a null character at the
@@ -133,6 +134,17 @@ int main(void)
              end even though it has been added manually, making the size of arr
              7 bytes (Hello + 2 null characters). strlen(arr) returns 5,
              because it can't tell the difference between the null characters.]
+
+ * An issue with taking a string input from the user with scanf() is that the
+   input can be larger than the array size, invoking undefined behaviour. But,
+   this is easily avoidable by using the positiveInt modifier with scanf(),
+   keeping positiveInt one less than the array size, in order to keep room for
+   the null character.
+   [Because scanf() doesn't know how long the array is, it starts writing from
+    the address of the zeroth element of the array and keeps writing until it's
+    done. If the user is lucky, they may get some unimportant stuff overwritten,
+    but eventually, scanf() would write and write and overwrite something fatal,
+    causing segmentation fault.]
 
  * sizeof is an operator (not a function) which returns the amount of memory
    (in bytes) that a quantity or a type occupies.
@@ -225,5 +237,8 @@ int main(void)
    as the input when scanf() expects a number, then it returns the value 0.
    It returns EOF when it detects end of file.
    [Useful for input validation]
+
+ * gets() (discussed later) is a dangerous function and is in no way a better
+   alternative to scanf().
 
  */
