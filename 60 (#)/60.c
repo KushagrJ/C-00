@@ -7,10 +7,10 @@ int main(void)
 {
 
     char line[255];
-    int i = 0;
 
+    int i = 0;
     printf("Enter a line: ");
-    while (scanf("%c", &line[i]), line[i] != '\n')
+    while ((scanf("%c", &line[i]), line[i] != '\n') && i < 254)
         i++;
 
     printf("In reverse: ");

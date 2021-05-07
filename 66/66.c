@@ -34,6 +34,8 @@ int main(void)
         else
             printf("I recongnize only lowercase letters!\n");
 
+        // To consume and ignore all remaining characters from the input buffer,
+        // including the final newline character.
         while (getchar() != '\n')
             continue;
 

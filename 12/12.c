@@ -74,7 +74,9 @@ int main(void)
     as the input for the first scanf() in the above example, then also K J will
     get printed]
    [scanf() leaves all of the trailing newline (or whitespace) onward characters
-    in the input buffer with any specifier]
+    in the input buffer with any specifier. If the positiveInt modifier is used
+    with it, then it leaves all of the remaining characters in the input buffer
+    when the limit is reached.]
 
  * scanf() successfully reads as many valid non-whitespace characters as entered
    (unless the positiveInt modifier is used with it), even if the target

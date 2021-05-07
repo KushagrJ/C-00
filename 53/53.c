@@ -9,7 +9,7 @@ int main(void)
 
     char word[20];
     printf("Enter a word: ");
-    scanf("%s", word);
+    scanf("%19s", word);
 
     printf("In reverse: ");
     for (int i = strlen(word); i >= 0; i--)
