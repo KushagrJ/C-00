@@ -17,18 +17,24 @@ int main(void)
     inputString[i] = '\0';
 
     for (int j = 0; j < i; j++)
-        if (inputString[j] == '!')
+        switch (inputString[j])
         {
-            numOfSubs++;
-            for (int x = i+1; x > j; x--)
-                inputString[x] = inputString[x-1];
-            i++;
-            j++;
-        }
+            case '.' :
+                inputString[j] = '!';
+                numOfSubs++;
+                break;
 
-    for (int k = 0; k < i; k++)
-        if (inputString[k] == '.')
-            numOfSubs++, inputString[k] = '!';
+            case '!' :
+                numOfSubs++;
+                for (int y = i+1; y > j; y--)
+                    inputString[y] = inputString[y-1];
+                i++;
+                j++;
+                break;
+
+            default :
+                continue;
+    }
 
     printf("Modified version :-\n");
     printf("%s", inputString);

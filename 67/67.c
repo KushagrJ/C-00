@@ -13,8 +13,11 @@ int main(void)
 
     printf("Enter input (# to stop) :-\n");
 
-    while ((c = getchar()) != '#')
+    int x;
+    while ((x = getchar()) != '#' && x != EOF)
     {
+        c = x;
+
         if (c == ' ')
             spaces++;
         else if (c == '\n')

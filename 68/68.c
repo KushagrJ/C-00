@@ -10,8 +10,9 @@ int main(void)
 
     printf("Enter input (# to stop) :-\n");
     int i = 0;
-    while ((inputString[i] = getchar()) != '#' && i < 255)
-        i++;
+    int x;
+    while ((x = getchar()) != '#' && x != EOF && i < 255)
+        inputString[i] = x, i++;
 
     printf("ASCII Codes :-\n");
 

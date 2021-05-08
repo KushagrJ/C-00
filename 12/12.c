@@ -65,7 +65,9 @@ int main(void)
    they will not allow the input to be sent to the input buffer on pressing the
    enter key.
 
- * scanf() stops reading at the first whitespace it encounters.
+ * scanf() stops reading at the first non-leading whitespace it encounters, at
+   end of file or at the limit specified by the specifier or the positiveInt
+   modifier.
    [For eg., if K J is given as the input for the first scanf() in
     char a, b; scanf("%c", &a); scanf(" %c", &b); printf("%c %c", a, b);,
     then J will automatically be taken as the input for the second scanf(), due
@@ -73,14 +75,12 @@ int main(void)
    [Since a char variable can hold a single character, therefore if KJ is given
     as the input for the first scanf() in the above example, then also K J will
     get printed]
-   [scanf() leaves all of the trailing newline (or whitespace) onward characters
-    in the input buffer with any specifier. If the positiveInt modifier is used
-    with it, then it leaves all of the remaining characters in the input buffer
-    when the limit is reached.]
+   [When it stops reading, scanf() leaves all of the remaining characters in the
+    input buffer with any specifier]
 
- * scanf() successfully reads as many valid non-whitespace characters as entered
-   (unless the positiveInt modifier is used with it), even if the target
-   variable, etc. isn't large enough to hold the input, causing overflows.
+ * According to the specifier and the positiveInt modifier, scanf() successfully
+   reads as many valid characters as entered, even if the target variable, etc.
+   isn't large enough to hold the input, causing overflows.
    What happens afterwards is undefined behaviour.
    [For eg., If 123456789123456789 is given as input for a scanf("%d", &foo);]
 

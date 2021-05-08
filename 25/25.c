@@ -237,10 +237,15 @@ int main(void)
         comes first.
 
  * The return value of scanf() is the number of items that it successfully
-   reads. If it reads no items, which happens if a non-numeric string is given
-   as the input when scanf() expects a number, then it returns the value 0.
-   It returns EOF when it detects end of file.
-   [Useful for input validation]
+   reads. If it reads items unsuccessfully, which happens if a non-numeric
+   string is given as the input when scanf() expects a number, then it returns
+   the value 0.
+   It returns EOF (i.e. a negative number) when it detects end of file without
+   reading anything, successfully or unsuccessfully.
+   [The return value of scanf() is useful for input validation. Checking the
+    return value of scanf() against the desired no. of successful readings of
+    items automatically covers the possibility of encountering end of file,
+    which is a negative number.]
 
  * gets() (discussed later) is a dangerous function and is in no way a better
    alternative to scanf().

@@ -17,8 +17,11 @@ int main(void)
 
     printf("Enter text to be analysed (| to terminate) :-\n");
 
-    while ((c = getchar()) != '|')
+    int x;
+    while ((x = getchar()) != '|' && x != EOF)
     {
+        c = x;
+
         numberOfCharacters++;
 
         if (c == '\n')

@@ -11,8 +11,11 @@ int main(void)
 
     printf("Enter a lowercase letter (# to exit): ");
 
-    while ((c = getchar()) != '#')
+    int x;
+    while ((x = getchar()) != '#' && x != EOF)
     {
+        c = x;
+
         if (c == '\n')
             continue;
 
@@ -36,7 +39,8 @@ int main(void)
 
         // To consume and ignore all remaining characters from the input buffer,
         // including the final newline character.
-        while (getchar() != '\n')
+        int y;
+        while ((y = getchar()) != '\n' && y != EOF)
             continue;
 
         printf("Enter a lowercase letter (# to exit): ");
