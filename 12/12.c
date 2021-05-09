@@ -76,7 +76,9 @@ int main(void)
     as the input for the first scanf() in the above example, then also K J will
     get printed]
    [When it stops reading, scanf() leaves all of the remaining characters in the
-    input buffer with any specifier]
+    input buffer with any specifier.
+    Also, scanf() leaves all of the unsuccessfully read characters in the input
+    buffer.]
 
  * According to the specifier and the positiveInt modifier, scanf() successfully
    reads as many valid characters as entered, even if the target variable, etc.
@@ -127,8 +129,9 @@ int main(void)
    stdin and stdout are often buffered, and are also known as the input and
    output buffers.
    When associated with input devices (for eg., keyboard), stdin can be thought
-   of as a stream associated with an infinite file. The end of file must be told
-   literally by simulating end of file, in order to close stdin.
+   of as a stream associated with an infinite file.
+   The end of file must be told literally by simulating end of file in order to
+   close stdin, which isn't required to be done generally.
 
  * On Linux, when stdin is associated with a keyboard, the end of file can be
    simulated by pressing Ctrl+D once if the user is at the beginning of a line
