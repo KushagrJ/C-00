@@ -34,7 +34,7 @@ int main(void)
 
             default :
                 continue;
-    }
+        }
 
     printf("Modified version :-\n");
     printf("%s", inputString);

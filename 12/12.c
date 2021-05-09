@@ -101,4 +101,53 @@ int main(void)
    and so on
 
 
+ * A file is an area of memory in which information is stored. Normally, a file
+   is kept in some sort of a permanent memory, such as a hard disk.
+
+ * Conceptually, a C program deals with a stream instead of directly with a
+   file. The process of opening a file is one of associating a stream with the
+   file (as a facilitator), and reading & writing take place via the stream.
+
+ * The concept of stream was developed in order to get a high-level, uniform way
+   of interacting with different sources of sequential data, like files,
+   keyboards, printers, etc. across all systems, since different systems have
+   different methods of low-level file handling.
+   Thus, a stream hides the low-level implementation details of the numerous
+   methodologies that different operating systems devise in order to interact
+   with the variously designed hardware.
+
+ * C treats input (for eg., keyboard) and output (for eg., display device) in
+   the same way as it treats regular files on storage devices.
+   So, input and output are treated as files opened automatically by every
+   C program.
+
+ * The stream associated with input is known as the standard input stream
+   (stdin) and the stream associated with output is known as the standard output
+   stream (stdout).
+   stdin and stdout are often buffered, and are also known as the input and
+   output buffers.
+   When associated with input devices (for eg., keyboard), stdin can be thought
+   of as a stream associated with an infinite file. The end of file must be told
+   literally by simulating end of file, in order to close stdin.
+
+ * On Linux, when stdin is associated with a keyboard, the end of file can be
+   simulated by pressing Ctrl+D once if the user is at the beginning of a line
+   or by pressing Ctrl+D twice if the user is not at the beginning of a line
+   (even if it seems as though end of file has been sent upon the first press).
+ * After sending end of file, i.e. after closing keyboard-associated stdin, no
+   more input can be sent to the program, such as with a new scanf(), etc.,
+   because as soon as the program tries to read stdin again, it will simply see
+   the end of file.
+   In order to send input to the program after sending end of file, the
+   clearerr() function of stdio.h can be used to clear the EOF status of stdin
+   by using the statement clearerr(stdin);.
+
+
+ * On Linux, an easy way to reassign stdin and stdout to files instead of input
+   and output devices is by using the redirection operators.
+   For eg., ./a.out <inputFile >outputFile
+            ./a.out >outputFile <inputFile
+   [This method is associated with the operating system, and not with C, making
+    this approach limited in some aspects]
+
  */

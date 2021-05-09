@@ -100,10 +100,7 @@ int main(void)
    [foo must be the one with an integer value (including char)]
    [label1, label2, ... must be integer-type (including char) constants or
     expressions containing only integer (including char) constants]
-   [Multiple labels can be used for the same case like this -
-    case label1 :
-    case label2 :
-        statement(s);
+   [Multiple labels can be used for the same case lEOF
         break;
     Here, due to the absence of break; in case label1, the program would
     process the statement(s) of case label2 if label1 is matched. In essence,

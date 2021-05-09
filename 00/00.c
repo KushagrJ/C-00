@@ -57,4 +57,26 @@ int main(void)
    In the case of main(), it doesn't matter either way in most cases, unless
    the user writes their own call to main(), etc.
 
+
+ * The POSIX standard defines a line as a sequence of zero or more non-newline
+   characters plus a terminating newline character.
+   Therefore, lines not ending in a newline character aren't considered actual
+   lines. This is the reason why text files should terminate with a newline, as
+   some programs might have problems processing the last line of a file that
+   isn't newline terminated.
+
+ * Although GCC is perfectly able to handle non-newline-terminated files, it
+   still used to warn about it because it had to due to the C standard.
+   After C++11, GCC no longer warns about this.
+
+ * An example of a problem that can arise if there is no newline at the end of
+   text files :-
+   According to the C standard, the #include preprocessor directive inserts the
+   file as it is, without inserting any newlines. So, without the #include file
+   ending with a newline character, its last line will combine with the first
+   line of the source file. Now, if the last line of the #include file is a
+   single-line comment, then the first line of the source file will also become
+   a comment, causing a problem.
+   [To be manually verified]
+
  */
