@@ -1,10 +1,13 @@
 // C17 Standard
 // Includes input validation
 
-// Later, improve the input validation with scanf() to report invalidity when
-// valid input isn't immediately followed by enter or EOF.
+// Improve the input validation with scanf() to report invalidity when valid
+// input isn't immediately followed by enter or EOF.
 // For eg., input like 22KJ should be reported as invalid, instead of 22 being
 // simply taken as the input and KJ being ignored.
+// Also, the program should report invalidity for out of range values specific
+// to different programs (for eg., in this program, the hours worked in a week
+// should not be less than 0.0 or greater than 168.0).
 // (Take all input as a string and then make the necessary checks & conversions)
 
 #include <stdio.h>
