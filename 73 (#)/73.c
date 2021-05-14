@@ -1,22 +1,16 @@
 // C17 Standard
-// Includes input validation
+// Includes input validation.
 
-// After completing C Primer Plus, improve the input validation with scanf() to
-// report invalidity when valid input isn't immediately followed by enter or
-// EOF. For eg., input like 22KJ should be reported as invalid, instead of
-// 22 being simply taken as the input and KJ being ignored.
-// Also, the program should report invalidity for out of range values specific
-// to different programs (for eg., in this program, the hours worked in a week
-// should not be less than 0.0 or greater than 168.0).
-// (Take all input as a string and then make the necessary checks & conversions)
+// After completing C Primer Plus, include input validation in this program
+// using a much better method than scanf(), such as @chux's suggestion on
+// https://codereview.stackexchange.com/questions/260562/input-validation.
+// (Have reasonable ranges of input for different programs, such as in this
+//  program, a non-negative input greater than 168.0 should be reported as
+//  invalid)
 
 #include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
 
 
-double get_valid_input(void);
-bool flush(void);
 double calculate_gross_pay(double hoursWorked);
 double calculate_taxes(double grossPay);
 
@@ -24,8 +18,9 @@ double calculate_taxes(double grossPay);
 int main(void)
 {
 
+    double hoursWorked;
     printf("Enter the no. of hours worked in a week: ");
-    double hoursWorked = get_valid_input();
+    scanf("%lf", &hoursWorked);
 
     double grossPay, taxes;
 
@@ -36,57 +31,7 @@ int main(void)
     printf("Taxes = $%.2f\n", taxes);
     printf("Net Pay = $%.2f\n", grossPay-taxes);
 
-    return EXIT_SUCCESS;
-
-}
-
-
-double get_valid_input(void)
-{
-
-    double hoursWorked;
-    bool endOfFile;
-
-    int a;
-    while (true)
-    {
-        a = scanf("%lf", &hoursWorked);
-        endOfFile = flush();
-
-        if (a == 1)
-        {
-            if (hoursWorked < 0.0)
-                a = 0;
-            else
-                break;
-        }
-
-        if (a != 1 && endOfFile == true)
-            exit(EXIT_FAILURE);
-
-        printf("Invalid input!\n");
-        printf("Enter the no. of hours worked in a week: ");
-    }
-
-    return hoursWorked;
-
-}
-
-
-bool flush(void)
-{
-
-    int f;
-    while ((f = getchar()) != '\n' && f != EOF)
-        continue;
-
-    if (f == EOF)
-    {
-        printf("\n");
-        return true;
-    }
-    else
-        return false;
+    return 0;
 
 }
 
@@ -109,3 +54,80 @@ double calculate_taxes(double grossPay)
     else
         return (0.15*300)+(0.2*150)+(0.25*(grossPay-450));
 }
+
+
+
+
+
+/* Later, as an exercise, try to implement all of the features of this program
+   using scanf().
+
+
+   #include <stdio.h>
+   #include <stdlib.h>
+   #include <stdbool.h>
+
+
+   double get_valid_input(void);
+   bool flush(void);
+
+
+   int main(void)
+   {
+
+       printf("Enter the no. of hours worked in a week: ");
+       double hoursWorked = get_valid_input();
+
+       return EXIT_SUCCESS;
+
+   }
+
+
+   double get_valid_input(void)
+   {
+
+       double hoursWorked;
+       bool endOfFile;
+
+       int a;
+       while (true)
+       {
+           a = scanf("%lf", &hoursWorked);
+           endOfFile = flush();
+
+           if (a == 1)
+           {
+               if (hoursWorked < 0.0)
+                   a = 0;
+               else
+                   break;
+           }
+
+           if (a != 1 && endOfFile == true)
+               exit(EXIT_FAILURE);
+
+           printf("Invalid input!\n");
+           printf("Enter the no. of hours worked in a week: ");
+       }
+
+       return hoursWorked;
+
+   }
+
+
+   bool flush(void)
+   {
+
+       int f;
+       while ((f = getchar()) != '\n' && f != EOF)
+           continue;
+
+       if (f == EOF)
+       {
+           printf("\n");
+           return true;
+       }
+       else
+           return false;
+
+   } */
