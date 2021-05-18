@@ -72,7 +72,7 @@ int main(void)
  * Operator precedence :-
 
    Parentheses are used to define custom precedence.
-   So, whatver is enclosed in parentheses is executed first.
+   So, whatever is enclosed in parentheses is executed first.
    [These parentheses aren't operators]
 
    Precedence   Operator   Description                             Associativity

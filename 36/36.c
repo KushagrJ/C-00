@@ -25,7 +25,7 @@ int main(void)
 void factorial(int num)
 {
 
-    int a = 1;
+    long a = 1;
 
     printf("%d! = ", num);
 
@@ -36,9 +36,52 @@ void factorial(int num)
         num--;
     }
 
-    printf("%d = %d\n", 1, a);
+    printf("%d = %ld\n", 1, a);
 
 }
+
+
+
+
+
+/* Using recursion :-
+
+#include <stdio.h>
+
+
+long factorial(int num);
+
+
+int main(void)
+{
+
+    int num;
+
+    printf("Enter a positive integer to know its factorial: ");
+    scanf("%d", &num);
+
+    printf("%d! = %ld\n", num, factorial(num));
+
+    return 0;
+
+}
+
+
+long factorial(int num)
+{
+
+    long ans;
+
+    if (num > 0)
+        ans = num*factorial(num-1);
+    else
+        ans = 1;
+
+    return ans;
+
+}
+
+*/
 
 
 
