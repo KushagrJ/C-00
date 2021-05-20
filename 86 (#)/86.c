@@ -62,6 +62,7 @@ void to_binary(long num)
  * If functions are made general enough, they can be reused in other programs.
  * Thinking about what a function should do and how it relates to the program
    as a whole should be done before worrying about writing the code for it.
+ * Each function should have a single, well-defined purpose.
 
  * The process of a function calling itself is known as recursion. Recursion is
    a sometimes tricky, sometimes convenient tool.
@@ -73,24 +74,5 @@ void to_binary(long num)
    memory, and is slower.
    But, in some cases, recursion becomes necessary as there is no simple loop
    solution.
-
- * For eg.,
-
-   long fibonacci(int n)
-   {
-       if (n < 3)
-           return n-1;
-       else
-           return fibonacci(n-1) + fibonacci(n-2);
-   }
-
-   Here, a double recursion is used, i.e. the function calls itself twice.
-   If a function call such as fibonacci(40) is made, then the first level would
-   allocate a variable n, the second level would allocate two more variables n,
-   the third level would allocate four more variables n, and so on, making the
-   number of variables grow exponentially. An exponential growth soon leads to
-   the computer requiring an enormous amount of memory.
-   Thus, recursion should be used cautiously, particularly when efficiency is
-   important.
 
  */
