@@ -34,6 +34,14 @@ int main(void)
  * int a = 1; is the same as int a; and a = 1;
  * %% can be used to print a percent sign.
 
+ * main, printf, etc. can be used as variable names, as they are not keywords.
+   But, beware of mismatching.
+   [For eg., int printf = 1; printf("%d\n", printf); - error
+             int main = 1; printf("%d\n", main); - no error
+             int printf = 1; putchar(printf); - no error]
+
+ * Using main, printf, etc. as user-defined function names results in errors.
+
  * The format for using printf() is printf(Control-String, item1, item2, ...);
    The phrase enclosed in double quotes is the Control-String, which describes
    how the items are to be printed.

@@ -32,7 +32,8 @@ int main(void)
 /* Trivia
 
  * The section of program between and including the braces is called a block,
-   or a compound statement. It is also considered as a single statement.
+   or a compound statement. It is also considered as a single statement, which
+   is made up of simple statement(s).
 
  * An expression consists of a combination of operators and operands.
    [For eg., 4, -6, 4+21, a*(b+c/d)/20, q = 5*2, x = ++q%3, q > 3, etc.]
@@ -55,8 +56,13 @@ int main(void)
  * Statements like 8;, a+b;, etc. are valid statements but aren't sensible, as
    they do nothing.
  * Not all complete instructions are statements.
-   [For eg., x = (y = 5)+6;
+   [For eg., x = (y = 5) + 6;
              Here, y = 5 is a complete instruction, but isn't a statement]
+ * An expression statement is a particular kind of statement. It consists of an
+   optional expression followed by a semicolon.
+   For eg., return foo; is a statement, but it's not an expression statement. It
+   contains an expression (foo), but the expression (plus the ;) doesn't make up
+   the entire statement.
 
  * A side effect is the modification of a data object or a file.
    [For eg., the main intent of C for days = 7; is to evaluate the expression,
@@ -75,14 +81,14 @@ int main(void)
    (d) The end of a full declarator
    (e) Between the evaluation of a full expression and the next full expression
        to be evaluated.
-       Full expressions - (1) an initializer
-                          (2) the expression in an expression statement
+       Full expressions - (1) an initializer.
+                          (2) the expression in an expression statement.
                           (3) the controlling expression of a selection
-                              statement (if or switch)
+                              statement (if or switch).
                           (4) the controlling expression of a while or do
-                              statment
-                          (5) each of the expressions of a for statement
-                          (6) the expression in a return statement
+                              statement.
+                          (5) each of the expressions of a for statement.
+                          (6) the expression in a return statement.
    (f) Immediately before a library function returns
    (g) After the actions associated with each formatted input/output function
        conversion specifier
@@ -197,12 +203,13 @@ int main(void)
 
  * Operator precedence :-
 
-   In C, each operator is assigned a precedence level.
-   Whatever is enclosed in parentheses is executed first.
-   Multiplication and division have a higher precedence than addition and
-   subtraction.
+   In C, each operator is assigned a precedence level (applicable only when
+   operators share operands).
+   Whatever is enclosed in parentheses is executed before/when the results of
+   the expressions inside the parentheses are required by the compiler to move
+   forward.
    If two operators having the same precedence share an operand, then they are
-   executed according to the order in which they occur in the statement.
+   executed according to their associativity.
    For most operators, the associativity is from left to right.
    [The complete precedence and order of evaluation are discussed later]
 

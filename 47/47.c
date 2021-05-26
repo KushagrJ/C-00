@@ -18,16 +18,3 @@ int main(void)
     return 0;
 
 }
-
-
-
-
-
-/* Trivia
-
- * for (int i = 0, char j = 97; ...) doesn't work because declarators of
-   different types can't be simultaneously declared and initialized.
- * The comma in int i = 0, j = 97 is not the comma operator.
-   The comma in i++, j++ is the comma operator.
-
- */

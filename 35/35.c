@@ -47,6 +47,8 @@ int main(void)
              the result to q
              q = 2*a++; multiplies a by 2, assigns the result to q and then
              increments a by 1]
+   [There should be no spaces between the two plus signs, as + +x means +(+x),
+    which means x]
 
  * -- is the decrement operator. It decrements the value of its operand by 1.
    [Similar rules apply for -- as well]
@@ -59,20 +61,42 @@ int main(void)
  * The increment/decrement operator shouldn't be used on a variable that is part
    of more than one argument of a function. Also, the increment/decrement
    operator shouldn't be used on a variable that appears more than once in an
-   expression. Doing so would result in undefined behaviour, as the compiler is
-   free to choose which arguments in a function to evaluate first alongwith
-   choosing the order in which operators having the same precedence are
-   executed, thereby increasing compiler efficiency.
+   expression. Doing so would result in undefined behaviour (unless sequence
+   points, etc. are used), as the compiler is free to choose the order of
+   evaluation of function arguments alongwith choosing the order of evaluation
+   of expressions (an example of unspecified behaviour), thereby increasing
+   compiler efficiency.
    [For eg., (a) int a = 1;
                  while (a < 10)
                      printf("%d squared equals %d\n", a, a*a++);
              (b) a = (b/2)+5*(1+b++);
              (c) x = y++ + y++;]
+   [An interesting thing to know about undefined behaviour is that once
+    undefined behaviour gets invoked, the compiler is free to do whatever it
+    wants, including crashing the program, or formatting the hard drive (which
+    never happens in practice)]
+
+ * int x = 1; x = x = x; also invokes undefined behaviour, even though
+   logically, it is unambiguous. This is because it involves multiple
+   modifications to x between two sequence points.
+   For eg., x = x; - defined behaviour.
+            x = x+1; - defined behaviour.
+            x = x++; - undefined behaviour.
+            printf("%d\n", ++x); - defined behaviour.
+
+ * printf("%d %d\n", x, x); is unspecified behaviour (as all function calls with
+   multiple arguments are), but printf("%d %d\n", x, x++); is unspecified as
+   well as undefined behaviour.
 
  * Operator precedence :-
 
-   Parentheses are used to define custom precedence.
-   So, whatever is enclosed in parentheses is executed first.
+   Whatever is enclosed in parentheses is executed before/when the results of
+   the expressions inside the parentheses are required by the compiler to move
+   forward.
+   The operator precedence and the parentheses don't matter when operands aren't
+   shared between operators/parentheses.
+   The parentheses don't specify the order of evaluation at all.
+   For eg., x = (x++); is still undefined, just like x = x++;.
    [These parentheses aren't operators]
 
    Precedence   Operator   Description                             Associativity
@@ -93,10 +117,10 @@ int main(void)
                    -       Unary minus
                    !       Logical NOT
                    ~       Bitwise NOT
-                  (type)   Cast
+                 (type)    Cast
                    *       Indirection (dereference)
                    &       Address-of
-                  sizeof   Size-of
+                 sizeof    Size-of
                 _Alignof   Alignment requirement
 
        03          *       Multiplication                          Left-to-right
@@ -155,18 +179,108 @@ int main(void)
              apply, as the multiplications don't share an operand.]
 
    Unlike Java, the order of evaluation is not necessarily left to right in C.
-   In C, the order of evaluation is undefined, unless sequence points, etc. are
-   used.
+   In C, the order of evaluation is unspecified, unless sequence points, etc.
+   are used.
 
    Operator precedence dictates which operations have to be evaluated before the
-   result of those operations are used together with the rest of the expression.
+   results of those operations are used together with the rest of the
+   expression.
    Order of evaluation is the actual order of execution of function arguments in
    a function call, sub-expressions within an expression, etc.
-   [For eg., f1()+f2()+f3() is evaluated as (f1()+f2())+f3(), but the function
-             call to f1() may be evaluated first, last or in between the calls
-             to f2() & f3()
-             a = ++a*(a++ + 5) - a++ may or may not be calculated before ++a]
+   [For eg., (a) f1()+f2()+f3() is evaluated as (f1()+f2())+f3(), but the
+                 function call to f1() may be evaluated first, last or in
+                 between the calls to f2() & f3()
+             (b) a = ++a*(a++ + 5) - a++ may or may not be evaluated before ++a]
 
  * For eg., int a = -(2+5)*6+(4+3*(2+3)); assigns -23 to a]
+   [It isn't necessary for all the parentheses to be resolved before moving on
+    to other operators. For eg., (2+3) may be evaluated first and (2+5) may be
+    evaluated much later.
+    Also, (2+5) may be evaluated first, followed by (2+5)*6, and so on.]
+
+ * For eg., int x; int a = 2; int b = 5; int c = 6; int d = 4; x = a*b/(c+d);
+            Here, the final value of x will be 1, no matter the order of
+            evaluation, which is unspecified.
+
+   On one system, the order of evaluation may be like this -
+   Step 1 ->   x = a * b / (c + d);
+   Step 2 ->   x = a * 5 / (c + d);
+   Step 3 ->   x = a * 5 / (c + 4);
+   Step 4 ->   x = 2 * 5 / (c + 4);
+   Step 5 ->   x = 10 / (c + 4);
+   Step 6 ->   x = 10 / (6 + 4);
+   Step 7 ->   x = 10 / 10;
+   Step 8 ->   x = 1;
+
+   On another system, the order of evaluation may be like this -
+   Step 1 ->   x = a * b / (c + d);
+   Step 2 ->   x = a * b / (6 + d);
+   Step 3 ->   x = a * b / (6 + 4);
+   Step 4 ->   x = a * b / 10;
+   Step 5 ->   x = 2 * b / 10;
+   Step 6 ->   x = 2 * 5 / 10;
+   Step 7 ->   x = 10 / 10;
+   Step 8 ->   x = 1;
+
+ * For eg., int x = 3 + 4 * 7 / (6 - 1) + 2 && 5 <= 9 || (7 == 8);
+
+   On one system, the order of evaluation may be like this -
+   Step 01 ->   x = 3 - 4 * 7 / (6 + 1) + 2 && 5 <= 9 || (7 == 8);
+   Step 02 ->   x = 3 - 28 / (6 + 1) + 2 && 5 <= 9 || (7 == 8);
+   Step 03 ->   x = 3 - 28 / 7 + 2 && 5 <= 9 || (7 == 8);
+   Step 04 ->   x = 3 - 4 + 2 && 5 <= 9 || (7 == 8);
+   Step 05 ->   x = -1 + 2 && 5 <= 9 || (7 == 8);
+   Step 06 ->   x = 1 && 5 <= 9 || (7 == 8);
+   Step 07 ->   x = 1 <= 9 || (7 == 8);
+   Step 08 ->   x = 1 || (7 == 8);
+   Step 09 ->   x = 1 || 0;
+   Step 10 ->   x = 1;
+
+   [Note that && and || are sequence points.
+    When moving on from a sequence point, it is guaranteed that all side effects
+    of previous evaluations have already been performed, and no side effects
+    from subsequent evaluations have been performed. So, in Step 9, even though
+    || is a sequence point, the part of the expression to the right of ||
+    (i.e. 7 == 8) is allowed to be evaluated before || has been resolved.]
+   [In this example, the parts of the expression to the right of && and || may
+    also be evaluated before the parts to their left, as there are no side
+    effects involved]
+   [For x = y || (++y == 8);, the steps will be (assuming y is, say, 1)
+        x = 1 || (++y == 8);
+        x = 1 || (2 == 8);
+        x = 1 || 0;
+        x = 1;
+        This behaviour is well-defined, due to the sequence point.]
+
+ * For eg., int x; int y = 1; x = ++y * y-- / (y + y++);
+            This is an example of unspecified + undefined behaviour. Hence, the
+            final value that gets assigned to x may vary between systems. Also,
+            since undefined behaviour is involved, therefore there is no
+            guarantee that the evaluation will take place at all (anything can
+            happen).
+            [Note that something like x = ++y && y-- || (y, y++); is
+             well-defined due to the sequence points]
+
+ * On one system, the order of evaluation may be like this -
+   Step 1 ->   x = ++y * y-- / (y + y++);   // (y has value 1)
+   Step 2 ->   x = ++y * y-- / (1 + y++)    // (y still has value 1)
+   Step 3 ->   x = ++y * 1 / (1 + y++);     // (y now has value 0)
+   Step 4 ->   x = 1 * 1 / (1 + y++);       // (y now has value 1)
+   Step 5 ->   x = 1 / (1 + y++);           // (y still has value 1)
+   Step 6 ->   x = 1 / (1 + 1);             // (y now has value 2)
+   Step 7 ->   x = 1 / 2;
+   Step 8 ->   x = 0;
+
+   On another system, the order of evaluation may be like this -
+   Step 1 ->   x = ++y * y-- / (y + y++);   // (y has value 1)
+   Step 2 ->   x = ++y * y-- / (y + 1);     // (y now has value 2)
+   Step 3 ->   x = ++y * 2 / (y + 1);       // (y now has value 1)
+   Step 4 ->   x = ++y * 2 / (1 + 1);       // (y still has value 1)
+   Step 5 ->   x = ++y * 2 / 2;             // (y still has value 1)
+   Step 6 ->   x = 2 * 2 / 2:               // (y now has value 2)
+   Step 7 ->   x = 4 / 2;
+   Step 8 ->   x = 2;
+
+   [Erroneous version - https://stackoverflow.com/questions/67689209]
 
  */

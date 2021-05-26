@@ -50,7 +50,9 @@ int main(void)
    long long are 2 bytes, 4 bytes, 8 bytes and 8 bytes, respectively.
  * According to the C documentation,
    size(short) <= size(int) <= size(long) <= size(long long).
+ * unsigned x; means unsigned int x;
  * short, int, long and long long are signed by default.
+   [So, int x; means signed int x; - Similarly for others]
  * Normally, constants within int's range are stored as int. To make the
    compiler store such constants as unsigned int, long, unsigned long, long long
    or unsigned long long, suffixes u/U, l/L, ul/UL, ll/LL or ull/ULL should be

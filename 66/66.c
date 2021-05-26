@@ -100,12 +100,19 @@ int main(void)
     parts of the switch]
    [foo must be the one with an integer value (including char)]
    [label1, label2, ... must be integer-type (including char) constants or
-    expressions containing only integer (including char) constants]
-   [Multiple labels can be used for the same case lEOF
+    expressions containing only integer (including char) constants.
+    They cannot be floating-point constants, variables, etc. or expressions
+    containing floating-point constants, variables, etc.]
+   [Multiple labels can be used for the same case like this -
+    case label1 :
+    case label2 :
+        statement(s);
         break;
     Here, due to the absence of break; in case label1, the program would
     process the statement(s) of case label2 if label1 is matched. In essence,
     both the labels would refer to the same statement(s).]
+   [The labels cannot be duplicate.
+    For eg., switch (x) {case 65: foo; case 'A': bar;} would give an error.]
 
  * while (getchar() != '\n')
        continue;

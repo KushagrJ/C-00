@@ -85,6 +85,24 @@ int main(void)
    expression.
  * The comma operator shouldn't be confused with the commas used in fuction call
    expressions, declarations, initializations, etc.
+ * For eg., (a) for (int i = 0, char j = 97; ...) doesn't work for the same
+                reason as int i = 0, char j = 97; doesn't work, i.e. because
+                declarators of different types can't be simultaneously declared
+                and initialized.
+            (b) The commas in int i, j and int i = 0, j = 97 are separators,
+                whereas the commas in i = 0, j = 97 and i++, j++ are operators.
+                [int a; a = 1, 2, 3; works fine because of the commas acting as
+                 operators (a gets assigned 1 because the comma operator has a
+                 lower precedence than the assignment operator). But,
+                 int a = 1, 2, 3; gives an error because this is the
+                 initialization (simultaneous declaration and assignment) of a,
+                 and the comma now becomes a separator, alongwith = now becoming
+                 part of an initializer.]
+            (c) int i = 1, j = i; isn't undefined because of two sequence points
+                (i & j are full declarators and = 1 & = i are initializers). The
+                comma is a separator.
+                [In int *p[3] = { 0 };, *p[3] is a full declarator and p & p[3]
+                 are non-full declarators]
 
  * for (char ch = 'a'; ch <= 'z'; ch++)
        printf("The ASCII value of %c is %d\n", ch, ch);
@@ -117,6 +135,8 @@ int main(void)
 
  * In a for loop, an empty condition is considered to be true. So, for ( ; ; )
    will go on forever.
+   But, while, do-while, if, etc. require the condition and leaving it empty
+   results in an error.
 
  * More assignment operators :-
    foo += bar is the same as foo = foo+bar

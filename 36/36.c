@@ -116,6 +116,7 @@ long factorial(int num)
  * An argument can be a constant, a variable or even an elaborate expression.
    Regardless of which it is, the argument is evaluated and its value is copied
    to the corresponding parameter.
+ * Too many / too few arguments in a function call results in an error.
  * If an argument other than integer is passed to factorial(), then it gets
    automatically converted to int.
  * The return value of a function can be a constant, a variable or even an
@@ -132,6 +133,10 @@ long factorial(int num)
  * The entire function definition can be placed before its first use, making
    the definition acting as its own prototype. This is most commonly done with
    short functions.
+
+ * Just like library functions, user-defined functions don't necessarily need to
+   be called. They can simply be defined/prototyped+defined without ever being
+   called, but it is probably useless.
 
  * void my_function(int x, y, z)            // Invalid function header.
    void my_function(int x, int y, int z)    // Valid function header.
