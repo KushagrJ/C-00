@@ -43,7 +43,7 @@ int main(void)
              the value of c = 3+8 is 11
              the value of 5 > 3 is 1
              the value of 2 == 0 is 0
-             the value of 6+(c = 3+8) is 17 (this is valid, but ill-advised)]
+             the value of 6 + (c = 3+8) is 17 (this is valid, but ill-advised)]
    [Although generally, true expressions evaluate to 1 by C, it also considers
     every other non-zero value (i.e. a non zero integer/float or a non-null
     character) as true; only 0 is regarded as false]
@@ -200,6 +200,13 @@ int main(void)
                 int a = (-5)%3; assigns -2 to a
                 int a = 5%(-3); assigns 2 to a
                 int a = (-5)%(-3) assigns -2 to a]
+
+ * && and || use lazy/short-circuit evaluation. This means that if the left
+   operand of &&/|| evaluates to 0/1, then the right operand isn't evaluated.
+   For eg., (a) int x = 1, y = 2; x = y - 2 * x && (y = 3); printf("%d\n", y);
+                prints 2
+            (b) int x = 1, y = 2; x = y - x || (y = 3); printf("%d\n", y);
+                prints 2
 
  * Operator precedence :-
 

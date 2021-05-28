@@ -27,6 +27,7 @@ int main(void)
 /* Trivia
 
  * ++ is the increment operator. It increments the value of its operand by 1.
+   It's operand's data type can be int, char, float, etc.
    [For eg., a = b++; assigns the value of b to a, and then increments b by 1
              a = ++b; increments b by 1, and then assigns the value of b to a
              a++; and ++a; both increment a by 1, i.e., they are identical when
@@ -79,10 +80,37 @@ int main(void)
  * int x = 1; x = x = x; also invokes undefined behaviour, even though
    logically, it is unambiguous. This is because it involves multiple
    modifications to x between two sequence points.
-   For eg., x = x; - defined behaviour.
+   For eg., x = x;   - defined behaviour.
             x = x+1; - defined behaviour.
-            x = x++; - undefined behaviour.
+            x = x++; - undefined behaviour (it is not sequenced whether the side
+                       effect by assignment to x will be done before or after
+                       the side effect by ++).
+            x = ++x; - undefined behaviour (incrementing x doesn't always need
+                       to happen before the value of ++x is used, i.e. the
+                       compiler can store the return value of ++x (which is x+1)
+                       in a register variable and actually increment the value
+                       of x later - similar logic like x = x++; applies).
             printf("%d\n", ++x); - defined behaviour.
+   [Simiarly for other similar expressions]
+
+ * a[x] = x++; - undefined behaviour (because the modification and access to x
+                 are unsequenced - in many cases, undefined behaviour is invoked
+                 because of multiple unsequenced modifications to an object).
+   [Simiarly for other similar expressions]
+
+ * i = i++, i--, i;   - undefined behaviour (because of i = i++, since comma
+                        has a lower precedence than assignment).
+   i = i, i++, i;     - defined behaviour.
+   i = i, i++, i--;   - defined behaviour.
+   i = (i, i++, i--); - undefined behaviour (because there is no sequence
+                        point between i-- and the final assignment to i, i.e.
+                        basically the same reason as i = i--; is undefined).
+   i = (i++, i--, i); - defined behaviour (because of the parentheses - thus,
+                        in cases like this, the parentheses are able to
+                        determine the order of evaluation, kind of).
+   i = (i++, i, i--); - undefined behaviour.
+   i = (i++, i, j--); - defined behaviour.
+   [Simiarly for other similar expressions]
 
  * printf("%d %d\n", x, x); is unspecified behaviour (as all function calls with
    multiple arguments are), but printf("%d %d\n", x, x++); is unspecified as
@@ -222,21 +250,21 @@ int main(void)
    Step 7 ->   x = 10 / 10;
    Step 8 ->   x = 1;
 
- * For eg., int x = 3 + 4 * 7 / (6 - 1) + 2 && 5 <= 9 || (7 == 8);
+ * For eg., int x = 3 + 4 * 7 / (6 - 1) + 2 && 5 <= 0 || (9 == 8);
 
    On one system, the order of evaluation may be like this -
-   Step 01 ->   x = 3 - 4 * 7 / (6 + 1) + 2 && 5 <= 9 || (7 == 8);
-   Step 02 ->   x = 3 - 28 / (6 + 1) + 2 && 5 <= 9 || (7 == 8);
-   Step 03 ->   x = 3 - 28 / 7 + 2 && 5 <= 9 || (7 == 8);
-   Step 04 ->   x = 3 - 4 + 2 && 5 <= 9 || (7 == 8);
-   Step 05 ->   x = -1 + 2 && 5 <= 9 || (7 == 8);
-   Step 06 ->   x = 1 && 5 <= 9 || (7 == 8);
-   Step 07 ->   x = 1 <= 9 || (7 == 8);
-   Step 08 ->   x = 1 || (7 == 8);
-   Step 09 ->   x = 1 || 0;
-   Step 10 ->   x = 1;
+   Step 01 ->   x = 3 - 4 * 7 / (6 + 1) + 2 && 5 <= 0 || (9 == 8);
+   Step 02 ->   x = 3 - 28 / (6 + 1) + 2 && 5 <= 0 || (9== 8);
+   Step 03 ->   x = 3 - 28 / 7 + 2 && 5 <= 0 || (9 == 8);
+   Step 04 ->   x = 3 - 4 + 2 && 5 <= 0 || (9 == 8);
+   Step 05 ->   x = -1 + 2 && 5 <= 0 || (9 == 8);
+   Step 06 ->   x = 1 && 5 <= 0 || (9 == 8);
+   Step 07 ->   x = 1 <= 0 || (9 == 8);
+   Step 08 ->   x = 0 || (9 == 8);
+   Step 09 ->   x = 0 || 0;
+   Step 10 ->   x = 0;
 
-   [Note that && and || are sequence points.
+   [Note that && and || are sequence points. Also, they use lazy evaluation.
     When moving on from a sequence point, it is guaranteed that all side effects
     of previous evaluations have already been performed, and no side effects
     from subsequent evaluations have been performed. So, in Step 9, even though
@@ -282,5 +310,31 @@ int main(void)
    Step 8 ->   x = 2;
 
    [Erroneous version - https://stackoverflow.com/questions/67689209]
+
+ * The semantics for the evaluation of an = expression include that the side
+   effect of updating the stored value of the left operand is sequenced after
+   the value computations of the left and right operands. The order of
+   evaluation of the operands is unspecified.
+   The part about the value computation of the left operand is not immediately
+   clear when working with very simple data objects, such as a variable, as
+   there is logically nothing to evaluate the variable to.
+   For eg., (a) int x = 0; x = 1;
+                Here, the left operand of = isn't evaluated to 0, but is
+                actually evaluated to an lvalue, which is defined as an
+                expression (with an object type other than void) that
+                potentially designates an object.
+            (b) arr[get_index()] = 1;
+                Here, it is more obvious that the left operand also needs to be
+                evaluated to an lvalue.
+   So, for int x = 1; y = 2; x = y;, it is guaranteed that the left operand will
+   get evaluated to an lvalue and the right operand will get evaluated to 2 (in
+   either order) before the side effect of updating the value of x happens.
+   Also, for int i = 1; i = i++;, it is guaranteed that the left operand will
+   get evaluated to an lvalue and the right operand will get evaluated to 1 (in
+   either order) before the side effect of assignment or incrementation happens
+   (undefined behaviour).
+   [Note that this rule for the assignment operator trumps the fact that all
+    side effects to the left of sequence points must be performed before
+    proceeding]
 
  */
