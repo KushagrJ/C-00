@@ -1,5 +1,5 @@
 // C17 Standard
-// Includes input validation.
+// Include input validation in version B of this program.
 
 #include <stdio.h>
 
