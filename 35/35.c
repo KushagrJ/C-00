@@ -28,10 +28,12 @@ int main(void)
 
  * ++ is the increment operator. It increments the value of its operand by 1.
    It's operand's data type can be int, char, float, etc.
-   [For eg., a = b++; assigns the value of b to a, and then increments b by 1
-             a = ++b; increments b by 1, and then assigns the value of b to a
-             a++; and ++a; both increment a by 1, i.e., they are identical when
-             used by themselves, without being part of a larger expression]
+   [For eg., (a) a = b++; assigns the original value of b to a, and the original
+                 value of b gets increased by 1.
+             (b) a = ++b; assigns the original value of b plus 1 to a, and the
+                 original value of b gets increased by 1.]
+   [a++; and ++a; both increment a by 1, i.e. they are identical when used by
+    themselves, without being part of a larger expression]
    [In this program, b is incremented before it is used to check the condition
     in the while loop. So, for the first iteration, the while loop checks
     whether 2 < 10 and uses the value of 2 for b in its body. Similarly, for the
@@ -62,11 +64,11 @@ int main(void)
  * The increment/decrement operator shouldn't be used on a variable that is part
    of more than one argument of a function. Also, the increment/decrement
    operator shouldn't be used on a variable that appears more than once in an
-   expression. Doing so would result in undefined behaviour (unless sequence
-   points, etc. are used), as the compiler is free to choose the order of
-   evaluation of function arguments alongwith choosing the order of evaluation
-   of expressions (an example of unspecified behaviour), thereby increasing
-   compiler efficiency.
+   expression. Doing so would generally result in undefined behaviour (unless
+   sequence points, etc. are used), as the compiler is free to choose the order
+   of evaluation of function arguments alongwith choosing the order of
+   evaluation of expressions (an example of unspecified behaviour), thereby
+   increasing compiler efficiency.
    [For eg., (a) int a = 1;
                  while (a < 10)
                      printf("%d squared equals %d\n", a, a*a++);
@@ -77,9 +79,9 @@ int main(void)
     wants, including crashing the program or formatting the hard drive (which
     never happens in practice)]
 
- * int x = 1; x = x = x; also invokes undefined behaviour, even though
-   logically, it is unambiguous. This is because it involves multiple
-   modifications to x between two sequence points.
+ * int x = 1; x = x = x; also invokes undefined behaviour, even though it is
+   logically unambiguous. This is because it involves multiple modifications to
+   x between two sequence points.
    For eg., x = x;   - defined behaviour.
             x = x+1; - defined behaviour.
             x = x++; - undefined behaviour (it is not sequenced whether the side
@@ -136,7 +138,7 @@ int main(void)
    might cause the program to crash, alongwith producing different results on
    different systems.
    In practice, all undefined behaviours should be avoided, alongwith those
-   unspecified behaviours that might produce different results in different
+   unspecified behaviours that might produce different results on different
    systems.
    As a good practice, the increment and decrement operators shouldn't be used
    in expressions, and should always be used in statements by themselves. If the
@@ -147,6 +149,7 @@ int main(void)
  * printf("%d %d\n", x, x); is unspecified behaviour (as all function calls with
    multiple arguments are), but printf("%d %d\n", x, x++); is unspecified as
    well as undefined behaviour.
+   [Simiarly for other similar statements]
 
  * Operator precedence :-
 
@@ -250,7 +253,8 @@ int main(void)
    [For eg., (a) f1()+f2()+f3() is evaluated as (f1()+f2())+f3(), but the
                  function call to f1() may be evaluated first, last or in
                  between the calls to f2() & f3()
-             (b) a = ++a * (a++ + 5) - a++ may or may not be evaluated before ++a]
+             (b) a = ++a * (a++ + 5) - a++ may or may not be evaluated before
+                                       ++a]
 
  * For eg., int a = -(2+5)*6+(4+3*(2+3)); assigns -23 to a]
    [It isn't necessary for all the parentheses to be resolved before moving on
@@ -307,12 +311,6 @@ int main(void)
    [In this example, the parts of the expression to the right of && and || may
     also be evaluated before the parts to their left, as there are no side
     effects involved]
-   [For x = y || (++y == 8);, the steps will be (assuming y is, say, 1)
-        x = 1 || (++y == 8);
-        x = 1 || (2 == 8);
-        x = 1 || 0;
-        x = 1;
-        This behaviour is well-defined, due to the sequence point.]
 
  * For eg., int x; int y = 1; x = ++y * y-- / (y + y++);
             This is an example of unspecified + undefined behaviour. Hence, the
@@ -380,6 +378,6 @@ int main(void)
              (b) x = (y = 5) && 7;
                  The side effect of y = 5 will be performed before proceeding
                  from &&, but the side effect of assignment to x cannot be
-                 performed before proceeding from &&.
+                 performed before proceeding from &&.]
 
  */
