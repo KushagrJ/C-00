@@ -112,36 +112,37 @@ int main(void)
    i = (i++, i, j--); - defined behaviour.
    [Simiarly for other similar expressions]
 
- * A very common example of undefined behaviour is when the same object's stored
-   value gets modified more than once between two sequence points, and/or when
-   the stored value of that object is read to determine something other than the
-   value which ends up getting stored in that object.
-   For eg., (a) a[x] = x++;        - unspecified behaviour because the
-                                     modification and access to x are
-                                     unsequenced, and undefined behaviour
-                                     because even though the value stored in x
-                                     is modified once between two sequence
-                                     points, the access to x has nothing to do
-                                     with the value which ends up getting stored
-                                     in x.
-            (b) x = x+1;           - well-specified as well as well-defined.
-            (c) x = i + i++;       - unspecified + undefined behaviour.
-            (d) i < (i++, i--, i); - unspecified, but not undefined, behaviour.
-   Unspecified behaviour guarantees that the program will run properly (it may
-   give different results on different systems), but undefined behaviour may
-   cause the program to crash, alongwith giving different results on different
-   systems.
-   In practice, all warnings related to unspecified and undefined behaviours
-   should be avoided.
-   As a good practice, the increment and decrement operators shouldn't be used
-   in expressions, and should always be used in statements by themselves. If the
-   situation necessitates their use in an expression, it should be ensured that
-   the same variable isn't used anywhere else in that entire statement.
-   [Simiarly for other similar expressions]
-
- * Undefined behaviour automatically means that the underlying behaviour is
+ * A very common example of undefined behaviour is 'when the same object's
+   stored value gets modified more than once between two sequence points', or
+   'when an object is modified exactly once between two sequence points and the
+   stored value of that object is read to determine something other than the
+   value which ends up getting stored in that object'.
+   Undefined behaviour automatically means that the underlying behaviour is
    unspecified as well, but all unspecified behaviours don't necessarily invoke
    undefined behaviour.
+   For eg., (a) a[x] = x++;        - undefined behaviour (because even though
+                                     the value stored in x is modified only once
+                                     between two sequence points, the access to
+                                     x has nothing to do with the value which
+                                     ends up getting stored in x.
+                                     [As a side note, this is unspecified
+                                      behaviour because the modification and
+                                      access to x are unsequenced]
+            (b) x = x+1;           - well-specified + well-defined behaviour.
+            (c) x = i + i++;       - undefined behaviour.
+            (d) i > i++;           - undefined behaviour.
+   Unspecified behaviour guarantees that the program will run properly (it might
+   produce different results on different systems), but undefined behaviour
+   might cause the program to crash, alongwith producing different results on
+   different systems.
+   In practice, all undefined behaviours should be avoided, alongwith those
+   unspecified behaviours that might produce different results in different
+   systems.
+   As a good practice, the increment and decrement operators shouldn't be used
+   in expressions, and should always be used in statements by themselves. If the
+   situation necessitates their use in an expression, then it should be ensured
+   that the same variable isn't used anywhere else in that entire statement.
+   [Simiarly for other similar expressions]
 
  * printf("%d %d\n", x, x); is unspecified behaviour (as all function calls with
    multiple arguments are), but printf("%d %d\n", x, x++); is unspecified as
