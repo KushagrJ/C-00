@@ -61,6 +61,7 @@ int main(void)
    [For eg., x*y++ means (x)*(y++), and not (x*y)++, which is invalid anyway as
              (x*y) is not a modifiable lvalue]
 
+
  * The increment/decrement operator shouldn't be used on a variable that is part
    of more than one argument of a function. Also, the increment/decrement
    operator shouldn't be used on a variable that appears more than once in an
@@ -79,11 +80,25 @@ int main(void)
     wants, including crashing the program or formatting the hard drive (which
     never happens in practice)]
 
+ * [From here on out, consistent-unspecified will refer to the behaviour that is
+    unspecified by the C standard, but which always produces the same result.
+    Similarly, inconsistent-unspecified will refer to the behaviour that is
+    unspecified by the C standard, which can also produce different results on
+    different systems.
+    Undefined behaviour automatically means that the underlying behaviour is
+    inconsistent-unspecified as well, but all inconsistent-unspecified
+    behaviours don't necessarily invoke undefined behaviour.
+    Also, well-specified and consistent-unspecified behaviours automatically
+    mean that the underlying behaviour is well-defined as well, but all
+    well-defined behaviours don't necessarily imply well-specified or
+    consistent-unspecified behaviours.]
+
  * int x = 1; x = x = x; also invokes undefined behaviour, even though it is
    logically unambiguous. This is because it involves multiple modifications to
    x between two sequence points.
-   For eg., x = x;   - defined behaviour.
-            x = x+1; - defined behaviour.
+   For eg., x = x;   - consistent-unspecified behaviour (the value computations
+                       of the left and right operands of = aren't sequenced).
+            x = x+1; - consistent-unspecified behaviour (same logic as x = x;).
             x = x++; - undefined behaviour (it is not sequenced whether the side
                        effect by assignment to x will be done before or after
                        the side effect by ++).
@@ -97,59 +112,89 @@ int main(void)
                        is used, i.e. the compiler can store the return value of
                        ++x (which is x+1) in a register variable and actually
                        increment the value of x later).
-            printf("%d\n", ++x); - defined behaviour.
+            int x;   - well-specified behaviour.
+            printf("%d\n", x);   - well-specified behaviour.
+            printf("%d\n", ++x); - consistent-unspecified behaviour (it is not
+                                   sequenced when the incrementation will be
+                                   performed).
    [Simiarly for other similar expressions]
 
  * i = i++, i--, i;   - undefined behaviour (because of i = i++, since comma
                         has a lower precedence than assignment).
-   i = i, i++, i;     - defined behaviour.
-   i = i, i++, i--;   - defined behaviour.
+   i = i, i++, i;     - consistent-unspecified behaviour (same logic as x = x;).
+   i = i, i++, i--;   - consistent-unspecified behaviour (same logic as x = x;).
    i = (i, i++, i--); - undefined behaviour (because there is no sequence
                         point between i-- and the final assignment to i, i.e.
                         basically the same reason as i = i--; is undefined).
-   i = (i++, i--, i); - defined behaviour (because of the parentheses - thus,
+   i = (i++, i--, i); - consistent-unspecified behaviour (same logic as x = x;).
+                        This is well-defined because of the parentheses - thus,
                         in cases like this, the parentheses are able to
                         determine the order of evaluation, kind of).
-   i = (i++, i, i--); - undefined behaviour.
-   i = (i++, i, j--); - defined behaviour.
+   i = (i++, i, j--); - consistent-unspecified behaviour.
    [Simiarly for other similar expressions]
 
  * A very common example of undefined behaviour is 'when the same object's
    stored value gets modified more than once between two sequence points', or
-   'when an object is modified exactly once between two sequence points and the
-   stored value of that object is read to determine something other than the
-   value which ends up getting stored in that object'.
-   Undefined behaviour automatically means that the underlying behaviour is
-   unspecified as well, but all unspecified behaviours don't necessarily invoke
-   undefined behaviour.
+   'when an object's stored value gets modified exactly once between two
+   sequence points and the stored value of that object is read to determine
+   something other than the value which ends up getting stored in that object
+   due to the same modification'.
    For eg., (a) a[x] = x++;        - undefined behaviour (because even though
                                      the value stored in x is modified only once
                                      between two sequence points, the access to
                                      x has nothing to do with the value which
                                      ends up getting stored in x.
-                                     [As a side note, this is unspecified
-                                      behaviour because the modification and
-                                      access to x are unsequenced]
-            (b) x = x+1;           - well-specified + well-defined behaviour.
-            (c) x = i + i++;       - undefined behaviour.
-            (d) i > i++;           - undefined behaviour.
-   Unspecified behaviour guarantees that the program will run properly (it might
+                                     This is inconsistent-unspecified behaviour
+                                     because the modification and access to x
+                                     are unsequenced]
+            (b) x = i + i++;       - undefined behaviour (because the access to
+                                     i (left operand of +) has nothing to do
+                                     with the value which ends up getting stored
+                                     in i due to ++).
+            (c) i > i++;           - undefined behaviour (because the access to
+                                     i (left operand of >) has nothing to do
+                                     with the value which ends up getting stored
+                                     in i due to ++).
+
+ * i > (i++, 5) - inconsistent-unspecified + well-defined behaviour.
+   This is inconsistent-unspecified behaviour because the modification and
+   access to i are unsequenced.
+   This is well-defined behaviour because the modification and access to i are
+   separated by a sequence point. Note that the access to i (left operand of >)
+   still has nothing to do with the value which ends up getting stored in i due
+   to ++, but this is not enough to invoke undefined behaviour, as the
+   modification and access to i aren't between the same seqeunce point.
+   Thus, well-defined behaviour doesn't necessarily mean that the underlying
+   behaviour is well-specified or consistent-unspecified. Also, the use of
+   sequence points doesn't always mean that the operations become sequenced.
+
+ * Unspecified behaviour guarantees that the program will run properly (it might
    produce different results on different systems), but undefined behaviour
    might cause the program to crash, alongwith producing different results on
    different systems.
    In practice, all undefined behaviours should be avoided, alongwith those
    unspecified behaviours that might produce different results on different
-   systems.
+   systems (i.e. inconsistent-unspecified).
    As a good practice, the increment and decrement operators shouldn't be used
    in expressions, and should always be used in statements by themselves. If the
    situation necessitates their use in an expression, then it should be ensured
    that the same variable isn't used anywhere else in that entire statement.
    [Simiarly for other similar expressions]
 
- * printf("%d %d\n", x, x); is unspecified behaviour (as all function calls with
-   multiple arguments are), but printf("%d %d\n", x, x++); is unspecified as
-   well as undefined behaviour.
-   [Simiarly for other similar statements]
+ * printf("%d %d\n", x, x); is consistent-unspecified behaviour, but
+   printf("%d %d\n", x, x++); is undefined behaviour.
+   [Simiarly for other similar expressions]
+
+
+ * For non-sequence-point operators, the value computations of the left and
+   right operands (in either order) are sequenced before the value computation
+   and side effects of the result of the operator. The side effects associated
+   with the left and right operands are unsequenced.
+ * For sequence-point operators, the value computation and side effects of the
+   left operand are sequenced before the value computation and side effects of
+   the right operand. The value computation, alongwith the side effects (if
+   applicable), of the result of the operator are sequenced after the value
+   computations and side effects of both the operands have been performed.
 
  * Operator precedence :-
 
@@ -264,7 +309,8 @@ int main(void)
 
  * For eg., int x; int a = 2; int b = 5; int c = 6; int d = 4; x = a*b/(c+d);
             Here, the final value of x will be 1, no matter the order of
-            evaluation, which is unspecified.
+            evaluation, which is unspecified. Thus, this is
+            consistent-unspecified behaviour.
 
    On one system, the order of evaluation may be like this -
    Step 1 ->   x = a * b / (c + d);
@@ -286,7 +332,24 @@ int main(void)
    Step 7 ->   x = 10 / 10;
    Step 8 ->   x = 1;
 
- * For eg., int x = 3 + 4 * 7 / (6 - 1) + 2 && 5 <= 0 || (9 == 8);
+
+ * exp1 && exp2 returns 1 (true) only if both exp1 and exp2 are true
+   exp1 || exp2 returns 1 (true) if either exp1 or exp2 is true or if both are
+                true
+   [For eg., 5 > 2 && 4 > 7 returns 0
+             3 && 4 returns 1
+             5 > 2 || 4 > 7 returns 1
+             0 || -22 returns 1]
+
+   && and || use lazy/short-circuit evaluation. This means that if the left
+   operand of &&/|| evaluates to 0/1, then the right operand isn't evaluated.
+   For eg., (a) int x = 1, y = 2; x = y - 2 * x && (y = 3); printf("%d\n", y);
+                prints 2
+            (b) int x = 1, y = 2; x = y - x || (y = 3); printf("%d\n", y);
+                prints 2
+   Lazy evaluation wouldn't be possible if && and || weren't sequence points.
+
+   For eg., int x = 3 + 4 * 7 / (6 - 1) + 2 && 5 <= 0 || (9 == 8);
 
    On one system, the order of evaluation may be like this -
    Step 01 ->   x = 3 - 4 * 7 / (6 + 1) + 2 && 5 <= 0 || (9 == 8);
@@ -295,31 +358,29 @@ int main(void)
    Step 04 ->   x = 3 - 4 + 2 && 5 <= 0 || (9 == 8);
    Step 05 ->   x = -1 + 2 && 5 <= 0 || (9 == 8);
    Step 06 ->   x = 1 && 5 <= 0 || (9 == 8);
-   Step 07 ->   x = 1 <= 0 || (9 == 8);
+   Step 07 ->   x = 1 && 0 || (9 == 8);
    Step 08 ->   x = 0 || (9 == 8);
    Step 09 ->   x = 0 || 0;
    Step 10 ->   x = 0;
 
-   [Note that && and || are sequence points. Also, they use lazy evaluation.
-    When moving on from a sequence point, it is guaranteed that all side effects
-    of previous evaluations have already been performed, and no side effects
-    from subsequent evaluations have been performed. So, in Step 09, even though
-    || is a sequence point, the part of the expression to the right of ||
-    (i.e. 7 == 8) is allowed to be evaluated before || has been resolved. The
-    reason why the side effect to the left of || isn't resolved before
-    proceeding is explained later.]
-   [In this example, the parts of the expression to the right of && and || may
-    also be evaluated before the parts to their left, as there are no side
-    effects involved]
+   [Note that the right operands of && and || cannot be evaluated before their
+    left operands.
+    In this example, due to <= having a higher precedence than && and || having
+    a lower predence than &&, the expression 5 <= 0 becomes the right operand of
+    && (and not just the constant 5), which cannot be evaluated before its left
+    operand gets evaluated due to && being a sequence point. Again, due to
+    operator precedence and parentheses, the left operand of && is actually the
+    expression 3 + 4 * 7 / (6 - 1) + 2 (and not just the constant 2).
+    Similarly, the right operand of || is the expression (9 == 8) and its left
+    operand is 3 - 4 * 7 / (6 + 1) + 2 && 5 <= 0, due to operator precedence and
+    parentheses.
+
 
  * For eg., int x; int y = 1; x = ++y * y-- / (y + y++);
-            This is an example of unspecified + undefined behaviour. Hence, the
-            final value that gets assigned to x may vary between systems. Also,
-            since undefined behaviour is involved, therefore there is no
-            guarantee that the evaluation will take place at all (anything can
-            happen).
-            [Note that something like x = ++y && y-- || (y, y++); is
-             well-defined due to the sequence points]
+            This is an example of undefined behaviour. Hence, the final value
+            that gets assigned to x may vary between systems. Also, since
+            undefined behaviour is involved, therefore there is no guarantee
+            that the evaluation will take place at all (anything can happen).
 
  * On one system, the order of evaluation may be like this -
    Step 1 ->   x = ++y * y-- / (y + y++);   // (y has value 1)
@@ -343,24 +404,24 @@ int main(void)
 
    [Erroneous version - https://stackoverflow.com/questions/67689209]
 
+
  * The semantics for the evaluation of an = expression include that the side
    effect of updating the stored value of the left operand is sequenced after
-   the value computations of the left and right operands. The order of
-   evaluation of the operands is unspecified.
-   Similar logic applies for all operators, i.e. the value computations of the
-   operands of an operator are sequenced before the value computation of the
-   result of the operator.
-   The part about the value computation of the left operand is not immediately
-   clear when working with very simple data objects, such as a variable, as
-   there is logically nothing to evaluate the variable to.
-   For eg., (a) int x = 0; x = 1;
-                Here, the left operand of = isn't evaluated to 0, but is
-                actually evaluated to an lvalue, which is defined as an
-                expression (with an object type other than void) that
-                potentially designates an object.
+   the value computations of the left and right operands. This follows directly
+   from the rule for non-sequence-point operators discussed previously.
+   The part about the value computation of the left operand of an assignment
+   operator is not immediately clear when working with very simple data objects
+   as left operands, such as a variable, as there is logically nothing to
+   evaluate the variable to.
+   For eg., (a) x = 1;
+                Here, the left operand of = gets evaluated to an lvalue, which
+                is defined as an expression (with an object type other than
+                void) that potentially designates an object.
+                In other words, evaluating the left operand to an lvalue means
+                determining the memory location in which to store the result.
             (b) arr[get_index()] = 1;
-                Here, it is more obvious that the left operand also needs to be
-                evaluated to an lvalue.
+                Here, it is more obvious that the left operand also needs to get
+                evaluated to something (i.e. an lvalue) before assignment.
    So, for int x = 1; y = 2; x = y;, it is guaranteed that the left operand will
    get evaluated to an lvalue and the right operand will get evaluated to 2 (in
    either order) before the side effect of updating the value of x happens.
@@ -368,16 +429,30 @@ int main(void)
    get evaluated to an lvalue and the right operand will get evaluated to 1 (in
    either order) before the side effect of assignment happens. The
    incrementation's unspecified order invokes undefined behaviour.
-   [Note that in some cases, this rule trumps the fact that all side effects to
-    the left of sequence points must be performed before proceeding.
-    But, the rule that no side effects to the right of sequence points can be
-    performed before proceeding always holds.
-    For eg., (a) x = 3 && 4;
-                 The side effect of x = 3 cannot be performed before proceeding
-                 from &&.
-             (b) x = (y = 5) && 7;
-                 The side effect of y = 5 will be performed before proceeding
-                 from &&, but the side effect of assignment to x cannot be
-                 performed before proceeding from &&.]
+
+ * Note that the sequence-point operators only guarantee that the value
+   computations and side effects of their left operands get performed before the
+   value computations and side effects of their right operands. They don't
+   guarantee that the value computations and side effects of everything that
+   comes before them get performed before moving forward, as opposed to some
+   other sequence points (such as between the evaluation of a full expression
+   and the next full expression to be evaluated).
+   For eg., (a) x = 3 && 4;
+                && only guarantees that 3 has been evaluated before 4. It
+                doesn't care about x = 3's value computation or side effect,
+                which in any case cannot be performed before 3 && 4 has been
+                evaluated, due to operator precedence.
+            (b) y = (y = 5) && y; or y = y++ && y (consistent-unspecified)
+                Due to the parentheses, (y = 5) becomes the left operand of &&.
+                So, it is guaranteed that the value computation and side effect
+                of (y = 5) will get performed before the value computation of
+                the right operand of &&, which is y.
+                Again, as a sequence-point operator, && doesn't care about the
+                value computation and side effect associated with the final
+                assignment to y.
+   [y = y > (y = 5) && y; or y = y > y++ && y; - undefined behaviour because the
+    access to y has nothing to do with the value which ends up getting stored in
+    y due to (y = 5)]
+   [Similarly for other similar expressions]
 
  */

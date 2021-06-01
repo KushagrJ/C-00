@@ -56,16 +56,9 @@ int main(void)
 
 /* Trivia
 
- * exp1 && exp2 returns 1 (true) only if both exp1 and exp2 are true
-   exp1 || exp2 returns 1 (true) if either exp1 or exp2 is true or if both are
-                true
-   !exp returns 1 (true) if exp is false, and it returns 0 (false) if exp is
+ * !exp returns 1 (true) if exp is false, and it returns 0 (false) if exp is
         true
-   [For eg., 5 > 2 && 4 > 7 returns 0
-             3 && 4 returns 1
-             5 > 2 || 4 > 7 returns 1
-             0 || -22 returns 1
-             !(4 > 7) returns 1
+   [For eg., !(4 > 7) returns 1
              !24 returns 0]
  * Including the iso646.h header file makes and an alias for &&, or an alias for
    || and not an alias for !.

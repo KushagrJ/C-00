@@ -75,8 +75,9 @@ int main(void)
 
  * Multiple expressions (not statements) can be written (not necessarily inside
    parentheses) by separating them with commas (used mostly in loops).
-   The commas act as sequence points, so all side effects to the left of the
-   commas take place before a program moves to the right of the commas.
+   The commas act as sequence points, so the value computation & side effects of
+   the left operand take place before the value computation & side effects of
+   the right operand.
    For eg., i++, a = i*j becomes no longer undefined (due to the comma
             'operator').
  * (expression1, expression2, expression3, ...) - First, expression1 is

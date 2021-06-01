@@ -66,11 +66,25 @@ int main(void)
 
  * A side effect is the modification of a data object or a file.
    [For eg., the main intent of C for days = 7; is to evaluate the expression,
-             and 7 gets assigned to days as a side effect; similarly, the
-             displaying of information by printf() is a side effect]
- * A sequence point is a point in program execution at which all side effects
-   are evaluated before going on to the next step. In C, the semicolon marks a
-   sequence point, among others.
+             and 7 gets assigned to days as a side effect (modification of a
+             data object); similarly, the displaying of information by printf()
+             is a side effect (modification of a file - the reason why the
+             modification of the output screen (for eg., by printf()) is
+             considered as the modification of a file is explained later)]
+
+ * A sequence point is a point in program execution which ensures that the value
+   computations and side effects to its left have been performed, and that the
+   value computations and side effects to its right are yet to be performed.
+ * Some sequence points ensure that the value computations and side effects of
+   everything that comes before them get performed before moving forward (such
+   as between the evaluation of a full expression and the next full expression
+   to be evaluated), whereas some other sequence points do not (such as the
+   various sequence-point operators).
+   [Explained later with examples]
+ * The C Standard never mentions that the semicolon is a sequence point,
+   although in the majority of cases, the semicolon can be considered as a
+   sequence point.
+   [See https://stackoverflow.com/questions/67784351]
  * Sequence points in C -
    (a) Between the evaluations of the function designator and actual arguments
        in a function call and the actual call
@@ -95,8 +109,6 @@ int main(void)
    (h) Immediately before and immediately after each call to a comparison
        function, and also between any call to a comparison function and any
        movement of the objects passed as arguments to that call
- * An important thing to note about sequence points is that they are not global,
-   but rather should be regarded as a set of local arguments.
 
  * The general syntax of the while loop is as follows :-
 
@@ -200,13 +212,6 @@ int main(void)
                 int a = (-5)%3; assigns -2 to a
                 int a = 5%(-3); assigns 2 to a
                 int a = (-5)%(-3) assigns -2 to a]
-
- * && and || use lazy/short-circuit evaluation. This means that if the left
-   operand of &&/|| evaluates to 0/1, then the right operand isn't evaluated.
-   For eg., (a) int x = 1, y = 2; x = y - 2 * x && (y = 3); printf("%d\n", y);
-                prints 2
-            (b) int x = 1, y = 2; x = y - x || (y = 3); printf("%d\n", y);
-                prints 2
 
  * Operator precedence :-
 
