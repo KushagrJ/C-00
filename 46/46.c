@@ -29,7 +29,7 @@ int main(void)
    5. >= (is greater than or equal to)
    6. != (is not equal to)
    [These can be used to compare numbers and characters, but not strings]
-   [The operators related to equality should generally not be used for
+   [The operators related to equality should generally not be used with
     floating-point values, as round-off errors can prevent two floating-point
     values from being equal, even though logically they should be]
    [The fabs() function, declared in the math.h header file, returns the

@@ -86,8 +86,12 @@ int main(void)
     unspecified by the C standard, which can also produce different results on
     different systems.
     Undefined behaviour automatically means that the underlying behaviour is
-    inconsistent-unspecified as well, but all inconsistent-unspecified
-    behaviours don't necessarily invoke undefined behaviour.
+    inconsistent-unspecified as well (because even if the programs with
+    undefined behaviour produce consistent results on many systems, the fact
+    that undefined behaviour may also cause those programs to crash, etc. makes
+    the behaviour inconsistent-unspecified as well), but all
+    inconsistent-unspecified behaviours don't necessarily invoke undefined
+    behaviour.
     Also, well-specified and consistent-unspecified behaviours automatically
     mean that the underlying behaviour is well-defined as well, but all
     well-defined behaviours don't necessarily imply well-specified or
@@ -382,7 +386,7 @@ int main(void)
             undefined behaviour is involved, therefore there is no guarantee
             that the evaluation will take place at all (anything can happen).
 
- * On one system, the order of evaluation may be like this -
+   On one system, the order of evaluation may be like this -
    Step 1 ->   x = ++y * y-- / (y + y++);   // (y has value 1)
    Step 2 ->   x = ++y * y-- / (1 + y++)    // (y still has value 1)
    Step 3 ->   x = ++y * 1 / (1 + y++);     // (y now has value 0)

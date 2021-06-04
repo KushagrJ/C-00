@@ -79,7 +79,7 @@ int main(void)
  * A pitfall with arrays is that, in the interest of speed of execution, C
    doesn't check to see whether a valid index is used or not.
    So, the compiler won't look to see whether incomes[30] exists or not for a
-   statement like incomes[30] = 2.56;, making the program placing this data is
+   statement like incomes[30] = 2.56;, making the program placing this data in
    a location possibly used for other data, potentially corrupting the output of
    the program or even causing it to abort.
 

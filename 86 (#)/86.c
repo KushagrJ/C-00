@@ -12,7 +12,7 @@ int main(void)
 
     long num;
 
-    printf("Enter a positive integer: ");
+    printf("Enter a non-negative integer: ");
     scanf("%ld", &num);
 
     printf("%ld in binary: ", num);
@@ -27,12 +27,10 @@ int main(void)
 void to_binary(long num)
 {
 
-    int r = num%2;
-
     if (num >= 2)
         to_binary(num/2);
 
-    putchar(r == 0 ? '0' : '1');
+    printf("%ld", num%2);
 
 }
 

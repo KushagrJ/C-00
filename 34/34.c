@@ -68,9 +68,7 @@ int main(void)
    [For eg., the main intent of C for days = 7; is to evaluate the expression,
              and 7 gets assigned to days as a side effect (modification of a
              data object); similarly, the displaying of information by printf()
-             is a side effect (modification of a file - the reason why the
-             modification of the output screen (for eg., by printf()) is
-             considered as the modification of a file is explained later)]
+             is a side effect (modification of a file)]
 
  * A sequence point is a point in program execution which ensures that the value
    computations and side effects to its left have been performed, and that the
