@@ -61,6 +61,12 @@ void swap(char * u, char * v)
  * A pointer is a variable (or, more generally, a data object) whose value is an
    address. Just as a char variable has a character as a value, a pointer has an
    address as a value.
+   Pointers provide a symbolic way to use addresses. Because the hardware
+   instructions of computing machines rely heavily on addresses, pointers enable
+   users to express themselves in a way that is close to how the machine
+   itself.
+   Many systems, such as this one, are byte addressable, meaning that each byte
+   in memory is numbered sequentially.
    [A pointer's data type is described as 'pointer to <data type>'.
     A pointer is represented internally as an unsigned integer on most systems,
     but a pointer shouldn't be thought of as an integer, as there are things

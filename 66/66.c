@@ -102,7 +102,10 @@ int main(void)
    [label1, label2, ... must be integer-type (including char) constants or
     expressions containing only integer (including char) constants.
     They cannot be floating-point constants, variables, etc. or expressions
-    containing floating-point constants, variables, etc.]
+    containing floating-point constants, variables, etc.
+    A sizeof expression (among others) is also considered to be an integer
+    constant, but a const variable isn't, because even though its value cannot
+    be changed, it is still a variable.]
    [Multiple labels can be used for the same case like this -
     case label1 :
     case label2 :

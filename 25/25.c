@@ -82,6 +82,7 @@ int main(void)
    statement like incomes[30] = 2.56;, making the program placing this data in
    a location possibly used for other data, potentially corrupting the output of
    the program or even causing it to abort.
+   [An example of undefined behaviour]
 
  * The elements of an array can be looped over with loops by using a variable
    index.
