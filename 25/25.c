@@ -59,6 +59,13 @@ int main(void)
  * Another way to define symbolic constants is to use the const keyword.
    [For eg., const int a = 22;
              const char hello[10] = "Hello";]
+ * The const keyword doesn't actually mean that something is constant. It only
+   means that the object is read-only.
+   Wherever true constants are required in a C program (such as for array sizes
+   in non-VLAs), the const keyword cannot be used. In these cases, #define needs
+   to be used.
+   [In C++, however, the const keyword can be used for proper constants, as
+    opposed to C]
 
  * An array is a collection of several memory cells in a row.
    More formally, it is an ordered sequence of data elements of one type, which

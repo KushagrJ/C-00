@@ -32,7 +32,7 @@ int main(void)
    [The operators related to equality should generally not be used with
     floating-point values, as round-off errors can prevent two floating-point
     values from being equal, even though logically they should be]
-   [The fabs() function, declared in the math.h header file, returns the
+   [The fabs() function, prototyped in the math.h header file, returns the
     absolute value of a floating-point value]
 
  * _Bool is the data type name for a boolean variable, i.e. a variable which can

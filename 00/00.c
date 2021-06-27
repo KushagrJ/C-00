@@ -23,10 +23,13 @@ int main(void)
    output, printf(), etc.
  * stdio.h stands for standard input/output header.
 
- * Header files generally contain only the declarations of functions, among
-   other things, and not the functions' definitions.
-   Thus, for eg., programs can run without having #include <stdio.h>, and the
-   compiler would only issue a warning, and not an error.
+ * Header files generally contain only the prototypes (i.e. the declarations) of
+   functions, among  other things, and not the functions' definitions.
+   Thus, for eg., programs can run without having #include <stdio.h>, and many
+   compilers would only issue a warning, and not an error.
+   [According to the C Standard, not prototyping/defining a function before its
+    first use (for eg., omitting #include <stdio.h>) is no longer valid.
+    Thus, compilers are free to give an error, instead of simply a warning.]
  * The compiler (or more specifically, the preprocessor) essentially copies and
    pastes the entire contents of the respective header files in place of the
    lines such as #include <stdio.h> during compilation.

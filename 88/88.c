@@ -118,7 +118,7 @@ void swap(char * u, char * v)
    pointing to the first byte of multi-byte variables sufficient.
 
  * In this program,
-   (a) swap() is declared as void swap(char * u, char * v); because the
+   (a) swap() is prototyped as void swap(char * u, char * v); because the
        function call to swap() is swap(&x, &y);, which means that instead of
        transmitting the values of x and y, the function transmits their
        addresses.
