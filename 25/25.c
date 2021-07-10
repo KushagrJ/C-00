@@ -158,6 +158,8 @@ int main(void)
     done. If the user is lucky, they may get some unimportant stuff overwritten,
     but eventually, scanf() would write and write and overwrite something fatal,
     causing segmentation fault.]
+   [Segmentation fault means that a program has attempted to access memory not
+    allocated to it]
 
  * sizeof is an operator (not a function) which returns the amount of memory
    (in bytes) that a quantity or a type occupies.
