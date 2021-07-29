@@ -163,7 +163,7 @@ int main(void)
       [For eg., int ex, why, zee; const int TWO = 2; why = 42; zee = why;
                 ex = TWO*(why+zee);
                 (a) ex, why and zee are modifiable lvalues. They can be used
-                    either on the left side or the right side if an assignment
+                    either on the left side or the right side of an assignment
                     operator.
                 (b) TWO is a non-modifiable lvalue, whose value is set to 2
                     using the initialization operator.
