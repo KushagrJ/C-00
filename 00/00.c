@@ -46,6 +46,14 @@ int main(void)
    of functions.
  * A C program, with some exceptions, always begins execution with the function
    called main().
+   [In a hosted environment, C defines the entry point to be main(). However, in
+    a freestanding environment, the entry point can have some other name, but
+    it would make the code implementation-defined and non-portable.
+    https://stackoverflow.com/q/30825151]
+   [Also, one can make it seem like the main() function is not used in a program
+    by using the #define preprocessor directive (#define kushagr main or
+    #define kushagr m##a##i##n or some other trick), but after preprocessing,
+    the code would still have the main() function.]
  * int indicates that main() returns an integer, which is 0 here.
  * void indicates that main() doesn't take any arguments. void is used to mean
    'empty', not 'invalid'.

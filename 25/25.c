@@ -62,10 +62,13 @@ int main(void)
  * The const keyword doesn't actually mean that something is constant. It only
    means that the object is read-only.
    Wherever true constants are required in a C program (such as for array sizes
-   in non-VLAs), the const keyword cannot be used. In these cases, #define needs
-   to be used.
+   in non-VLAs), the const keyword cannot be used. In these cases, true integer
+   constant expressions, such as #define constants, need to be used.
    [In C++, however, the const keyword can be used for proper constants, as
-    opposed to C]
+    opposed to C.
+    Also, some implementations may accept const variables as proper constants in
+    C as well, as the C Standard establishes what a compiler must support, not
+    what it must not suppoprt.]
 
  * An array is a collection of several memory cells in a row.
    More formally, it is an ordered sequence of data elements of one type, which
@@ -94,8 +97,7 @@ int main(void)
  * The elements of an array can be looped over with loops by using a variable
    index.
 
- * To be understood properly after learning arrays and pointers -
-   An array can be defined (i.e. declared and initialized) without specifying a
+ * An array can be defined (i.e. declared and initialized) without specifying a
    size. The compiler will infer the size from the initialization statement.
    [For eg., int a[] = {1,2,3};]
    An array can be declared without specifying a size in multiple cases.
