@@ -169,8 +169,7 @@ int main(void)
    to ++, but this is not enough to invoke undefined behaviour, as the
    modification and access to i aren't between the same seqeunce point.
    Thus, well-defined behaviour doesn't necessarily mean that the underlying
-   behaviour is well-specified or consistent-unspecified. Also, the use of
-   sequence points doesn't always mean that the operations become sequenced.
+   behaviour is well-specified or consistent-unspecified.
 
  * Unspecified behaviour guarantees that the program will run properly (it might
    produce different results on different systems), but undefined behaviour
