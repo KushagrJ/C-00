@@ -58,9 +58,8 @@ void swap(char * u, char * v)
    One way to achieve this is by using pointers (and by extension, addresses),
    which is illustrated in this program.
 
- * A pointer is a variable (or, more generally, a data object) whose value is an
-   address. Just as a char variable has a character as a value, a pointer has an
-   address as a value.
+ * A pointer is a variable whose value is an address. Just as a char variable
+   has a character as a value, a pointer variable has an address as a value.
    Pointers provide a symbolic way to use addresses. Because the hardware
    instructions of computing machines rely heavily on addresses, pointers enable
    users to express themselves in a way that is close to how the machine

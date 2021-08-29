@@ -64,11 +64,11 @@ int main(void)
    contains an expression (foo), but the expression (plus the ;) doesn't make up
    the entire statement.
 
- * A side effect is the modification of a data object or a file.
+ * A side effect is the modification of an object or a file.
    [For eg., the main intent of C for days = 7; is to evaluate the expression,
-             and 7 gets assigned to days as a side effect (modification of a
-             data object); similarly, the displaying of information by printf()
-             is a side effect (modification of a file)]
+             and 7 gets assigned to days as a side effect (modification of an
+             object); similarly, the displaying of information by printf() is a
+             side effect (modification of a file)]
 
  * A sequence point is a point in program execution which ensures that the value
    computations and side effects to its left have been performed, and that the
