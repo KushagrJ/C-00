@@ -28,9 +28,9 @@ int main(void)
  * A variable must be declared before its first use.
  * C names are case sensitive.
  * %d tells the computer where and in what form to print the value of a. The %
-   alerts the program that a variable, generally, is to be printed at that
-   location, and the d tells it to print the variable as a decimal integer
-   value.
+   alerts the program that the value stored in a variable, generally, is to be
+   printed at that location, and the d tells it to print the value as a decimal
+   integer
  * int a = 1; is the same as int a; and a = 1;
  * %% can be used to print a percent sign.
 

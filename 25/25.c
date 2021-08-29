@@ -79,7 +79,6 @@ int main(void)
 
  * The elements of an array are accessed by using an integer index, starting
    with 0.
-   An array element can be used in the same way as a variable of the same type.
    [For eg., float incomes[20]; declares an array called incomes which can hold
              20 float values.
              incomes[2] = 1.23; assigns 1.23 to the third element of incomes.
@@ -94,8 +93,7 @@ int main(void)
    the program or even causing it to abort.
    [An example of undefined behaviour]
 
- * The elements of an array can be looped over with loops by using a variable
-   index.
+ * The elements of an array can be accessed conveniently by using loops.
 
  * An array can be defined (i.e. declared and initialized) without specifying a
    size. The compiler will infer the size from the initialization statement.
@@ -171,8 +169,6 @@ int main(void)
    specifier to be used with it is %zu.
    In this program, the return value of sizeof name is assigned to the integer
    size, so the usual %d specifier is used to print size, instead of %zu.
-   [It is best to use a variable with sizeof (as in this program), as opposed to
-    directly using sizeof foo as an argument for printf()]
    [For eg., printf("%zu", sizeof(char)); prints 1
              printf("%zu", sizeof 22); prints 4 on this system]
 

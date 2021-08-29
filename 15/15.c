@@ -35,7 +35,7 @@ int main(void)
  * The C language defines a byte to be the number of bits used by char, so one
    can have a system with 16-bit or 32-bit bytes, instead of the common 8-bit
    ones.
- * char = A; - The compiler thinks that A is a variable.
+ * char = A; - The compiler thinks that A is the name of a variable.
    char = "A"; - The compiler thinks that A is a string.
  * Character constants are also treated as int.
  * According to the ASCII code, char = 'A'; can also be written as
@@ -48,7 +48,7 @@ int main(void)
    characters enclosed in double quotes, it should not be enclosed in single
    quotes.
  * char isn't signed or unsigned by default.
- * The _Bool type stores 1 (true) or 0 (false). Its size is 1 bit.
+ * The _Bool type stores 1 (true) or 0 (false). Its size is 1 byte.
 
  * Even though a char is promoted to an integer (i.e. the ASCII value of the
    character), the hh modifier of printf() converts it back to a char before

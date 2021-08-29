@@ -62,14 +62,14 @@ int main(void)
              (x*y) is not a modifiable lvalue]
 
 
- * The increment/decrement operator shouldn't be used on a variable that is part
-   of more than one argument of a function. Also, the increment/decrement
-   operator shouldn't be used on a variable that appears more than once in an
-   expression. Doing so would generally result in undefined behaviour (unless
-   sequence points, etc. are used), as the compiler is free to choose the order
-   of evaluation of function arguments alongwith choosing the order of
-   evaluation of expressions (an example of unspecified behaviour), thereby
-   increasing compiler efficiency.
+ * The increment/decrement operator shouldn't be used on the name of a variable
+   that is part of more than one argument of a function. Also, the
+   increment/decrement operator shouldn't be used on the name of a variable that
+   appears more than once in an expression. Doing so would generally result in
+   undefined behaviour (unless sequence points, etc. are used), as the compiler
+   is free to choose the order of evaluation of function arguments alongwith
+   choosing the order of evaluation of expressions (an example of unspecified
+   behaviour), thereby increasing compiler efficiency.
    [For eg., (a) int a = 1;
                  while (a < 10)
                      printf("%d squared equals %d\n", a, a*a++);

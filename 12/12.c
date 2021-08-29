@@ -29,8 +29,8 @@ int main(void)
 
  * The floating-point variable type (float) can hold numbers with decimal
    points.
- * The f in %f tells the program to print the variable, generally, as a
-   floating-point value.
+ * The f in %f tells the program to print the value stored in the variable,
+   generally, as a floating-point value.
  * The .2 in %.2f rounds off the value to 2 decimal places. Different compilers
    have different rules for rounding off, especially for the edge cases, such as
    22.765.
@@ -43,8 +43,8 @@ int main(void)
  * scanf() provides keyboard input to the program. It converts string input into
    various forms - integers, floating-point numbers, characters and C strings.
  * The %f instructs scanf() to read a floating-point number from the keyboard,
-   and the &weightInKilograms tells scanf() to assign the input value to the
-   variable named weightInKilograms.
+   and the &weightInKilograms tells scanf() to store the input value in the
+   variable called weightInKilograms.
  * Pressing the enter key after the input makes the cursor go to the next line.
    This is the property of the terminal, and has nothing to do with scanf(). So,
    there is no need for a \n right before Your weight is...
