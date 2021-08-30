@@ -229,23 +229,27 @@ int main(void)
  * Type conversions :-
 
    Normally, in an expression, the data types of 'the objects referred to by the
-   lvalues used in the expression' and 'other smaller expressions' should be the
-   same. But, if types are mixed, then C uses a set of rules to make type
-   conversions automatically.
+   lvalues used in the expression (lvalues are expressions themselves)', 'the
+   smaller expressions which are a part of the expression' and 'the values
+   obtained after evaluating those expressions' should be the same. But, if
+   types are mixed, then C uses a set of rules to make type conversions
+   automatically.
 
-   1. char and short expressions are automatically converted to signed int
-      expressions.
+   1. The data type of the value of an expression of data type char or short is
+      automatically converted to signed int.
       These are called promotions.
-      If sizeof(short) is the same as sizeof(int) on a system, then unsigned
-      short expressions get converted to unsigned int expressions.
-      Previously, float expressions were automatically converted to double
-      expressions. But, under the current C Standard, float expressions aren't
-      converted to double expressions, unless necessary.
-      [For eg., previously, float * float produced a double expression, but now,
-       float * float produces a float expression]
+      If sizeof(short) is the same as sizeof(int) on a system, then the data
+      type of the value of an expression of data type unsigned short gets
+      converted to unsigned int.
+      Previously, the data type of the value of an expression of data type float
+      used to get converted to double. But, under the current C Standard, the
+      data type of the value of an expression of data type float doesn't get
+      converted to double, unless necessary.
+      [For eg., previously, float * float produced a double value, but now,
+       float * float produces a float value]
 
-   2. In any operation involving expressions/operands of two different types,
-      the expression/operand having the data type of lower rank is promoted.
+   2. In any operation involving values of two different types, the value having
+      the data type of lower rank is promoted.
       The ranking of types, from highest to lowest, is long double, double,
       float, unsigned long long, long long, unsigned long, long, unsigned int
       and int.
@@ -253,16 +257,16 @@ int main(void)
                 Here, (float * float) is done without promotion. Promotion
                 occurs in (float * double) and the final addition.]
 
-   3. In an assignment/initialization statement, the final data type of the
-      expression used to access the final calculated value is converted to the
-      data type of the variable being assigned the value.
+   3. In an assignment/initialization statement, the data type of the final
+      calculated value (rvalue) gets converted to the data type of the object
+      referred to by the lvalue.
       This can result in either a promotion or a demotion.
       Demotion can cause implementation-dependent or undefined behaviour in
       certain cases.
 
-   4. When passed as function arguments, char and short expressions are
-      converted to int expressions, and float expressions are converted to
-      double expressions.
+   4. When passed as a function argument, the value of an expression of data
+      type char or short is converted to int, and the value of an expression of
+      data type float is converted to double.
 
    [https://stackoverflow.com/questions/46073295/implicit-type-promotion-rules]
 
