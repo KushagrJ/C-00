@@ -36,7 +36,7 @@ int main(void)
    is made up of simple statement(s).
 
  * An expression consists of a combination of operators and operands.
-   [For eg., 4, -6, 4+21, a*(b+c/d)/20, q = 5*2, x = ++q%3, q > 3, etc.]
+   [For eg., x, 4, -6, 4+21, a*(b+c/d)/20, q = 5*2, x = ++q % 3, q > 3, etc.]
  * Every expression has a value.
    [For eg., the value of 9 is 9
              the value of -4+6 is 2
@@ -143,8 +143,7 @@ int main(void)
       not assignment.
       The operand to the right of the assignment operator gets assigned to the
       operand on the left.
-      Statements like 2001 = year; are invalid, as a value can't be assigned to
-      a constant.
+      Statements like 2001 = year; are invalid.
       The purpose of the assignment operator is to store a value at a memory
       location.
       Data object, or simply object, is a region of data storage that can be
@@ -167,12 +166,16 @@ int main(void)
                     operator.
                 (b) TWO is a non-modifiable lvalue, whose value is set to 2
                     using the initialization operator.
-                (c) 2 and 42 are rvalues.
+                (c) 2 and 42 are constant expressions, which get evaluated to
+                    rvalues.
                 (d) While why and zee are modifiable lvalues, the expression
-                    (why+zee) is an rvalue, as it doesn't represent a specific
-                    memory location and nothing can be assigned to it. It's just
-                    a temporary value the program calculates, and then discards
-                    when it's finished with it.]
+                    (why+zee) is evaluated to an rvalue, as it doesn't represent
+                    a specific memory location and nothing can be assigned to
+                    it. It's just a temporary value the program calculates, and
+                    then discards when it's finished with it.]
+      The same identifier can be 'an lvalue' and can also be 'evaluated to an
+      rvalue'. For eg., int x = 1; int y = x; - Here, x is an lvalue in the
+      first statement and x is evaluated to an rvalue in the second statement.
       In C, multiple assignments are acceptable in a single statement.
       [For eg., a = b = c = 22;
                 First, c gets the value 22, then b does, and finally a does,
@@ -225,36 +228,41 @@ int main(void)
 
  * Type conversions :-
 
-   Statements and expressions should normally use variables and constants of
-   just one type. But, if types are mixed, then C uses a set of rules to make
-   type conversions automatically.
+   Normally, in an expression, the data types of 'the objects referred to by the
+   lvalues used in the expression' and 'other smaller expressions' should be the
+   same. But, if types are mixed, then C uses a set of rules to make type
+   conversions automatically.
 
-   1. When appearing in an expression, char and short (both signed and unsigned)
-      are automatically converted to signed int. These are called promotions.
-      If short is the same size as int on a system, then unsigned short gets
-      converted to unsigned int.
-      Previously, float was automatically converted to double. But, under the
-      current C standard, float isn't converted to double, unless necessary.
-      [For eg., previously, float*float produced a double result, but now,
-       float*float produces a float result]
+   1. char and short expressions are automatically converted to signed int
+      expressions.
+      These are called promotions.
+      If sizeof(short) is the same as sizeof(int) on a system, then unsigned
+      short expressions get converted to unsigned int expressions.
+      Previously, float expressions were automatically converted to double
+      expressions. But, under the current C Standard, float expressions aren't
+      converted to double expressions, unless necessary.
+      [For eg., previously, float * float produced a double expression, but now,
+       float * float produces a float expression]
 
-   2. In any operation involving two types, both values are converted to the
-      higher ranking of the two types.
+   2. In any operation involving expressions/operands of two different types,
+      the expression/operand having the data type of lower rank is promoted.
       The ranking of types, from highest to lowest, is long double, double,
       float, unsigned long long, long long, unsigned long, long, unsigned int
       and int.
-      [For eg., (float*float)+(float*double)
-                Here, (float*float) is done without promotion. Promotion occurs
-                in (float*double) and the final addition.]
+      [For eg., (float * float) + (float * double)
+                Here, (float * float) is done without promotion. Promotion
+                occurs in (float * double) and the final addition.]
 
-   3. In an assignment statement, the final result of the calculations is
-      converted to the type of the variable being assigned the value.
+   3. In an assignment/initialization statement, the final data type of the
+      expression used to access the final calculated value is converted to the
+      data type of the variable being assigned the value.
       This can result in either a promotion or a demotion.
       Demotion can cause implementation-dependent or undefined behaviour in
       certain cases.
 
-   4. When passed as function arguments, char and short are converted to int,
-      and float is converted to double.
+   4. When passed as function arguments, char and short expressions are
+      converted to int expressions, and float expressions are converted to
+      double expressions.
 
    [https://stackoverflow.com/questions/46073295/implicit-type-promotion-rules]
 

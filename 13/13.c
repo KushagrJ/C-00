@@ -31,8 +31,10 @@ int main(void)
 /* Trivia
 
  * There is no preset specifier to print a value in binary notation.
- * int a = 22; can also be written as int a = '\26'; (in octal form) or as
-   int a = '\x16'; (in hexadecimal form), and so on.
+ * int a = 22; can also be written as int a = 026; (in octal form) or as
+   int a = 0x16; / int a = 0X16; (in hexadecimal form), and so on.
+ * printf("%d\n", 08); gives an error, as octal numbers go from 0 to 7.
+   [Similarly for others]
  * %O is not a format specifier.
 
  * Another way to break a line in printf() is by using a \.

@@ -113,14 +113,14 @@ long factorial(int num)
  * An argument can be thought of as being the value to which the parameter is
    initialized (i.e., simulataneously declared and assigned) when the function
    is called.
- * An argument can be a constant, a variable or even an elaborate expression.
-   Regardless of which it is, the argument is evaluated and its value is copied
-   to the corresponding parameter.
+ * An argument can be a constant expression, a variable or even an elaborate
+   expression. Regardless of which it is, the argument is evaluated and its
+   value is copied to the corresponding parameter.
  * Too many / too few arguments in a function call results in an error.
  * If an argument other than integer is passed to factorial(), then it gets
    automatically converted to int.
- * The return value of a function can be a constant, a variable or even an
-   elaborate expression.
+ * The return value of a function can be a constant expression, a variable or
+   even an elaborate expression.
    [With return, only one value can be sent back to the calling function]
  * Not only can the return value of a function be assigned to a variable, it can
    also be used as part of expressions.

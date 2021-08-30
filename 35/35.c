@@ -370,10 +370,11 @@ int main(void)
     left operands.
     In this example, due to <= having a higher precedence than && and || having
     a lower predence than &&, the expression 5 <= 0 becomes the right operand of
-    && (and not just the constant 5), which cannot be evaluated before its left
-    operand gets evaluated due to && being a sequence point. Again, due to
-    operator precedence and parentheses, the left operand of && is actually the
-    expression 3 + 4 * 7 / (6 - 1) + 2 (and not just the constant 2).
+    && (and not just the expression 5), which cannot be evaluated before its
+    left operand gets evaluated due to && being a sequence point.
+    Again, due to operator precedence and parentheses, the left operand of && is
+    actually the expression 3 + 4 * 7 / (6 - 1) + 2 (and not just the
+    expression 2).
     Similarly, the right operand of || is the expression (9 == 8) and its left
     operand is 3 - 4 * 7 / (6 + 1) + 2 && 5 <= 0, due to operator precedence and
     parentheses.
@@ -417,20 +418,21 @@ int main(void)
    as left operands, such as a variable, as there is logically nothing to
    evaluate the variable to.
    For eg., (a) x = 1;
-                Here, the left operand of = gets evaluated to an lvalue, which
-                is defined as an expression (with an object type other than
-                void) that potentially designates an object.
-                In other words, evaluating the left operand to an lvalue means
-                determining the memory location in which to store the result.
+                Here, the left operand of = is an lvalue which gets evaluated.
+                An lvalue is is defined as an expression (which also includes
+                identifiers) that potentially designates an object.
+                In other words, evaluating an lvalue means determining the
+                memory location in which to store the result.
             (b) arr[get_index()] = 1;
                 Here, it is more obvious that the left operand also needs to get
-                evaluated to something (i.e. an lvalue) before assignment.
+                evaluated to a memory location before assignment.
    So, for int x = 1; y = 2; x = y;, it is guaranteed that the left operand will
-   get evaluated to an lvalue and the right operand will get evaluated to 2 (in
-   either order) before the side effect of updating the value of x happens.
+   get evaluated to a memory location and the right operand will get evaluated
+   to 2 (in either order) before the side effect of updating the value of x
+   happens.
    Also, for int i = 1; i = i++;, it is guaranteed that the left operand will
-   get evaluated to an lvalue and the right operand will get evaluated to 1 (in
-   either order) before the side effect of assignment happens. The
+   get evaluated to a memory location and the right operand will get evaluated
+   to 1 (in either order) before the side effect of assignment happens. The
    incrementation's unspecified order invokes undefined behaviour.
 
  * Note that the sequence-point operators only guarantee that the value

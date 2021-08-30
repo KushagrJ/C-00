@@ -74,7 +74,8 @@ void swap(char * u, char * v)
     64-bit one]
  * If ptr is a pointer variable, then ptr = &foo assigns foo's address to ptr.
    It is said that ptr points to foo. The difference between ptr and &foo is
-   that ptr is a variable (modifiable lvalue) and &foo is a constant (rvalue).
+   that ptr is a variable (modifiable lvalue) and &foo is an expression (which
+   is evaluated to an rvalue).
  * The indirection operator * (unary) (also known as the dereferencing operator)
    can be used to find the value stored in foo, like val = *ptr (finding the
    value ptr points to).
@@ -88,8 +89,7 @@ void swap(char * u, char * v)
    point needs to be specified as well, because different variable types take up
    different amounts of storage, and some pointer operations require knowledge
    of those storage sizes. Also, the program has to know what kind of data is
-   stored at the addresses, when different data types take up the same amount of
-   storage (such as int and float on this system).
+   stored at the addresses.
  * int * ptr; (ptr is declared to be a pointer to an integer variable)
    float * p1, * p2;
    [Similarly for other data types]
@@ -110,11 +110,14 @@ void swap(char * u, char * v)
    then at the very least the user would get a different value (as it would read
    the remains of that variable and the additional bytes that follow, according
    to the type of the pointer), and on some architectures, the program could
-   crash.
+   crash (undefined behaviour).
    The C standard implies indirectly that multi-byte variables must be stored
    contiguously in the memory (i.e., the remaining bytes are understood to
    immediately follow the first one in a contiguous manner), making a pointer
    pointing to the first byte of multi-byte variables sufficient.
+ * The information about the number of next contiguous bytes to be considered a
+   part of the pointed-to object is automatically provided by the data type of
+   the object storing its address (i.e. pointer to <data type>).
 
  * In this program,
    (a) swap() is prototyped as void swap(char * u, char * v); because the

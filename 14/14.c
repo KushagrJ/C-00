@@ -59,11 +59,14 @@ int main(void)
    used, respectively.
  * To print as octal and hexadecimal, %ho/%hx/%hX, %o/%x/%X, %lo/%lx/%lX or
    %llo/%llx/%llX should be used (for signed and unsigned, both).
- * intMinimum is set to be -2147483647-1 instead of -2147483648, because
-   -2147483648 is not a number (C does not support negative literal values).
-   -2147483648 is actually an expression: a positive literal value 2147483648
-   with a unary operator (-) in front of it. Since 2147483648 is too large for
-   int, therefore -2147483648 is stored as long, instead of int.
+ * -2147483648 is an expression: a positive long int expression 2147483648 with
+   a unary operator (-) in front of it.
+   Since 2147483648 is too large for int on this system, therefore the data type
+   of the expression -2147483648 is long int, even though -2147483648 is
+   within the range of int.
+   Setting an int variable to -2147483648 would produce no errors or warnings,
+   as the data type of -2147483648 would be implicitly converted from long int
+   to int before the assignment, but that's a different matter.
    [Similarly for others]
  * Lowercase format specifiers should be used for various integer types other
    than %X.
