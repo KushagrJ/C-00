@@ -157,7 +157,7 @@ int main(void)
     the address of the zeroth element of the array and keeps writing until it's
     done. If the user is lucky, they may get some unimportant stuff overwritten,
     but eventually, scanf() would write and write and overwrite something fatal,
-    causing segmentation fault.]
+    causing segmentation fault. - Undefined Behaviour]
    [Segmentation fault means that a program has attempted to access memory not
     allocated to it]
 

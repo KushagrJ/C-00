@@ -267,7 +267,8 @@ int main(void)
 
    3. In an assignment/initialization statement, the data types of the final
       calculated value and the entire expression get converted to the data type
-      of the object referred to by the lvalue.
+      of the object referred to by the lvalue right before the assignment
+      occurs.
       This can result in either a promotion or a demotion.
       Demotion can cause implementation-dependent or undefined behaviour in
       certain cases.
