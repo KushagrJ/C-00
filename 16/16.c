@@ -71,10 +71,16 @@ void print_c_in_various_forms(void)
    variable type (double) has to be able to represent at least ten significant
    figures and allow a range of at least 10^(-37) to 10^(37).
  * long double has to be at least as precise as double.
- * Normally, constants within double's range are stored as double. To make the
-   compiler store such constants as float or long double, suffixes f/F or l/L
+ * Normally, constants within double's range are of data type double. To make
+   the compiler use such constants as float or long double, suffixes f/F or l/L
    should be used, respectively.
-   There is no format specifier for float in printf(), because when a float is
+   [long double x = (long double) 1.0; is different from long double x = 1.0L;
+    as in the first case, the constant 1.0 is initially of data type double and
+    is then converted to long double, but in the second case, the constant 1.0
+    is of data type long double to begin with.
+    Similarly for others.]
+   [Constants such as 3, 5.6, 'K', 5+7, etc. aren't stored in memory]
+ * There is no format specifier for float in printf(), because when a float is
    passed to printf(), it gets promoted to double before printf() receives it.
    [See 'Type conversions' in 34.c]
  * float doesn't keep track of extra significant figures. So, 2.0E20 + 1 will

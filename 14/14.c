@@ -53,10 +53,15 @@ int main(void)
  * unsigned x; means unsigned int x;
  * short, int, long and long long are signed by default.
    [So, int x; means signed int x; - Similarly for others]
- * Normally, constants within int's range are stored as int. To make the
-   compiler store such constants as unsigned int, long, unsigned long, long long
+ * Normally, constants within int's range are of data type int. To make the
+   compiler use such constants as unsigned int, long, unsigned long, long long
    or unsigned long long, suffixes u/U, l/L, ul/UL, ll/LL or ull/ULL should be
    used, respectively.
+   [long x = (long) 1; is different from long x = 1L; as in the first case, the
+    constant 1 is initially of data type int and is then converted to long, but
+    in the second case, the constant 1 is of data type long to begin with.
+    Similarly for others.]
+   [Constants such as 3, 5.6, 'K', 5+7, etc. aren't stored in memory]
  * To print as octal and hexadecimal, %ho/%hx/%hX, %o/%x/%X, %lo/%lx/%lX or
    %llo/%llx/%llX should be used (for signed and unsigned, both).
  * -2147483648 is an expression: a positive long int expression 2147483648 with

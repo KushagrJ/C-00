@@ -1,5 +1,5 @@
 // C17 Standard
-// Doesn't include input validation.
+// This program doesn't require input validation.
 
 
 #include <stdio.h>
@@ -8,7 +8,7 @@
 #include <ctype.h>
 
 
-void get_string_from_user(char *, size_t);
+void get_string_from_user(char **, size_t);
 size_t count_and_locate_units(const char *, const char ***, size_t **, size_t,
                               bool);
 void print_units(const char **, size_t *, size_t, bool);
@@ -26,21 +26,21 @@ int main(void)
     }
 
     printf("Enter a string (EOF to stop) :-\n");
-    get_string_from_user(string, assumed_size_of_string_array);
+    get_string_from_user(&string, assumed_size_of_string_array);
 
 
     size_t assumed_number_of_sentences = 10;
 
-    const char ** starting_addresses_of_sentences =
-        (const char **) malloc(assumed_number_of_sentences * sizeof (char *));
+    const char ** starting_addresses_of_sentences = (const char **)
+        malloc(assumed_number_of_sentences * sizeof (const char *));
     if (starting_addresses_of_sentences == NULL)
     {
         fprintf(stderr, "Unsuccessful allocation!\n");
         exit(EXIT_FAILURE);
     }
 
-    size_t * lengths_of_sentences =
-        (size_t *) calloc(assumed_number_of_sentences, sizeof (size_t));
+    size_t * lengths_of_sentences = (size_t *)
+        malloc(assumed_number_of_sentences * sizeof (size_t));
     if (lengths_of_sentences == NULL)
     {
         fprintf(stderr, "Unsuccessful allocation!\n");
@@ -56,18 +56,18 @@ int main(void)
                 actual_number_of_sentences, true);
 
 
-    size_t assumed_number_of_words = 10;
+    size_t assumed_number_of_words = 100;
 
-    const char ** starting_addresses_of_words =
-        (const char **) malloc(assumed_number_of_words * sizeof (char *));
+    const char ** starting_addresses_of_words = (const char **)
+        malloc(assumed_number_of_words * sizeof (const char *));
     if (starting_addresses_of_words == NULL)
     {
         fprintf(stderr, "Unsuccessful allocation!\n");
         exit(EXIT_FAILURE);
     }
 
-    size_t * lengths_of_words =
-        (size_t *) calloc(assumed_number_of_words, sizeof (size_t));
+    size_t * lengths_of_words = (size_t *)
+        malloc(assumed_number_of_words * sizeof (size_t));
     if (lengths_of_words == NULL)
     {
         fprintf(stderr, "Unsuccessful allocation!\n");
@@ -94,40 +94,41 @@ int main(void)
 }
 
 
-void get_string_from_user(char * string, size_t assumed_size_of_string_array)
+void get_string_from_user(char ** ptr_string,
+                          size_t assumed_size_of_string_array)
 {
 
     size_t i = 0;
     int c;
     while ((c = getchar()) != EOF)
     {
-        string[i] = c;
+        (*ptr_string)[i] = c;
 
         i++;
         if (i == assumed_size_of_string_array)
         {
             assumed_size_of_string_array *= 2;
 
-            char * temp = realloc(string, assumed_size_of_string_array);
+            char * temp = realloc(*ptr_string, assumed_size_of_string_array);
             if (temp == NULL)
             {
                 fprintf(stderr, "Unsuccessful allocation!\n");
                 exit(EXIT_FAILURE);
             }
-            string = temp;
+            *ptr_string = temp;
         }
     }
-    string[i] = '\0';
+    (*ptr_string)[i] = '\0';
 
     size_t actual_size_of_string_array = i+1;
 
-    char * temp = realloc(string, actual_size_of_string_array);
+    char * temp = realloc(*ptr_string, actual_size_of_string_array);
     if (temp == NULL)
     {
         fprintf(stderr, "Unsuccessful allocation!\n");
         exit(EXIT_FAILURE);
     }
-    string = temp;
+    *ptr_string = temp;
 
 }
 
@@ -168,7 +169,7 @@ size_t count_and_locate_units(const char * string,
 
             const char ** temp1 =
                 realloc(*ptr_starting_addresses_of_units,
-                        assumed_number_of_units * sizeof (char *));
+                        assumed_number_of_units * sizeof (const char *));
             if (temp1 == NULL)
             {
                 fprintf(stderr, "Unsuccessful allocation!\n");
@@ -188,6 +189,7 @@ size_t count_and_locate_units(const char * string,
         }
 
         (*ptr_starting_addresses_of_units)[i] = &string[j];
+        (*ptr_lengths_of_units)[i] = 0;
 
         while (string[j] != '\0')
         {
@@ -219,7 +221,7 @@ size_t count_and_locate_units(const char * string,
     {
         const char ** temp1 =
             realloc(*ptr_starting_addresses_of_units,
-                    actual_number_of_units * sizeof (char *));
+                    actual_number_of_units * sizeof (const char *));
         if (temp1 == NULL)
         {
             fprintf(stderr, "Unsuccessful allocation!\n");

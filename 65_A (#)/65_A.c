@@ -1,5 +1,5 @@
 // C17 Standard
-// Include input validation in version B of this program.
+// This program doesn't require input validation.
 
 #include <stdio.h>
 #include <ctype.h>
@@ -8,21 +8,20 @@
 int main(void)
 {
 
-    char c;
-    long numberOfCharacters = 0L;
+    int numberOfLines = 1;
     int numberOfWords = 0;
-    int numberOfLines = 0;
+    long numberOfCharacters = 0L;
+
+    char lastChar = '\n';
 
     // To keep track of the beginnings and ends of words.
     _Bool cIsPartOfAWord = 0;
 
-    printf("Enter text to be analysed (| to terminate) :-\n");
+    printf("Enter text to be analysed (EOF to terminate) :-\n");
 
-    int x;
-    while ((x = getchar()) != '|' && x != EOF)
+    int c;
+    while ((c = getchar()) != EOF)
     {
-        c = x;
-
         numberOfCharacters++;
 
         if (c == '\n')
@@ -40,9 +39,14 @@ int main(void)
         // must mark the end of that word.
         if (isspace(c) && cIsPartOfAWord)
             cIsPartOfAWord = 0;
+
+        lastChar = c;
     }
 
-    printf("Number of lines: %d\n", numberOfLines);
+    if (lastChar == '\n')
+        numberOfLines--;
+
+    printf("\nNumber of lines: %d\n", numberOfLines);
     printf("Number of words: %d\n", numberOfWords);
     printf("Number of characters: %ld\n", numberOfCharacters);
 
