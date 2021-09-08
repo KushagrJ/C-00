@@ -81,7 +81,6 @@ int main(void)
    read a single character.
    Similarly, putchar(foo); is equivalent to printf("%c", foo);, with the only
    difference being speed.
-   [getchar() and putchar() are preprocessor macros rather than true functions]
 
  * The ctype.h header file contains the prototypes of C's standard set of
    functions for analyzing characters.
