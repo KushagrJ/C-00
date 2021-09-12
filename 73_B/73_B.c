@@ -8,10 +8,11 @@
 //  program, a non-negative input greater than 168.0 should be reported as
 //  invalid)
 
-// For single inputs, let the user use only EOF to terminate input.
-// For multiple inputs, let the user use ENTER to terminate every input, and
-// additionally, let them use use EOF to terminate the final input.
+// For single inputs, let the user use ENTER or EOF to terminate input.
+// For multiple inputs, let the user use ENTER to terminate every non-final
+// input, and let them use use ENTER or EOF to terminate final input.
 // Using clearerr(stdin) is not a good idea.
+
 
 
 

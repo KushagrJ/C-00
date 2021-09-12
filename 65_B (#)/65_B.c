@@ -202,6 +202,7 @@ size_t count_and_locate_units(const char * string,
                         break;
                 }
             }
+
             else
             {
                 if (isspace(string[j]))
