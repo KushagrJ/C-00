@@ -191,9 +191,9 @@ size_t count_and_locate_units(const char * string,
         (*ptr_starting_addresses_of_units)[i] = &string[j];
         (*ptr_lengths_of_units)[i] = 0;
 
-        while (string[j] != '\0')
+        if (sentences)
         {
-            if (sentences)
+            while (string[j] != '\0')
             {
                 if (isspace(string[j]))
                 {
@@ -201,16 +201,22 @@ size_t count_and_locate_units(const char * string,
                             (string[j-1] == '?'))
                         break;
                 }
-            }
 
-            else
+                ((*ptr_lengths_of_units)[i])++;
+                j++;
+            }
+        }
+
+        else
+        {
+            while (string[j] != '\0')
             {
                 if (isspace(string[j]))
-                    break;
-            }
+                        break;
 
-            ((*ptr_lengths_of_units)[i])++;
-            j++;
+                ((*ptr_lengths_of_units)[i])++;
+                j++;
+            }
         }
 
         i++;
@@ -240,6 +246,7 @@ size_t count_and_locate_units(const char * string,
         }
         *ptr_lengths_of_units = temp2;
     }
+
     else
     {
         free(*ptr_starting_addresses_of_units);
@@ -262,21 +269,44 @@ void print_units(const char ** starting_addresses_of_units,
     // If (sentences == true), then 'units' means 'sentences'.
     // Else, 'units' means 'words'.
 
-    printf("\n\nNumber of %s = %zu\n\n",
-           (sentences ? "sentences" : "words"), actual_number_of_units);
-
-    for (size_t x = 0; x < actual_number_of_units; x++)
+    if (sentences)
     {
-        printf("%s No. %0*zu: ", (sentences ? "Sentence" : "Word"),
-               (sentences ? 2 : 3), x+1);
-        for (size_t y = 0; y < lengths_of_units[x]; y++)
+        printf("\n\nNumber of sentences = %zu\n\n", actual_number_of_units);
+
+        for (size_t x = 0; x < actual_number_of_units; x++)
         {
-            if (starting_addresses_of_units[x][y] == '\n')
-                putchar(' ');
-            else
-                putchar(starting_addresses_of_units[x][y]);
+            printf("Sentence No. %02zu: ", x+1);
+
+            for (size_t y = 0; y < lengths_of_units[x]; y++)
+            {
+                if (starting_addresses_of_units[x][y] == '\n')
+                    putchar(' ');
+                else
+                    putchar(starting_addresses_of_units[x][y]);
+            }
+
+            printf("\n");
         }
-        printf("\n");
+    }
+
+    else
+    {
+        printf("\n\nNumber of words = %zu\n\n", actual_number_of_units);
+
+        for (size_t x = 0; x < actual_number_of_units; x++)
+        {
+            printf("Word No. %03zu: ", x+1);
+
+            for (size_t y = 0; y < lengths_of_units[x]; y++)
+            {
+                if (starting_addresses_of_units[x][y] == '\n')
+                    putchar(' ');
+                else
+                    putchar(starting_addresses_of_units[x][y]);
+            }
+
+            printf("\n");
+        }
     }
 
 }
