@@ -23,7 +23,7 @@ int main(void)
 
 
 
-/* Trivia
+/* Trivia - 15.c
 
  * The char type stores small integers and characters (such as letters and
    punctuation marks) as integers, according to a given code. The ASCII code is
@@ -55,4 +55,4 @@ int main(void)
    printing.
    [See 'Type conversions' in 34.c]
 
- */
+ * End of Trivia */

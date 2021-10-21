@@ -87,7 +87,7 @@ long factorial(int num)
 
 
 
-/* Trivia
+/* Trivia - 36.c
 
  * int num in the prototype of factorial() indicates that it takes one argument
    of type int in the form of the variable num, which is declared inside the
@@ -150,4 +150,4 @@ long factorial(int num)
     void my_function(x, y, z)
     int x, y, z;]
 
- */
+ * End of Trivia */

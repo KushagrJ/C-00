@@ -58,7 +58,7 @@ int main(void)
 
 
 
-/* Trivia
+/* Trivia - 65-A.c
 
  * !exp returns 1 (true) if exp is false, and it returns 0 (false) if exp is
         true
@@ -112,4 +112,4 @@ int main(void)
    toupper(foo) - converts lowercase letters to uppercase letters; no effect on
                   other characters
 
- */
+ * End of Trivia */

@@ -44,7 +44,7 @@ void Temperatures(double fahr)
 
 
 
-/* Trivia
+/* Trivia - 45.c
 
  * while (scanf("%lf", &fahr) == 1) can also be simply written as
    while (scanf("%lf", &fahr)), as the while loop executes if the value
@@ -60,4 +60,4 @@ void Temperatures(double fahr)
  * foo = function(); 'runs' the function and then assigns the function's return
    value to foo.
 
- */
+ * End of Trivia */

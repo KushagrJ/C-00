@@ -25,7 +25,7 @@ int main(void)
 
 
 
-/* Trivia
+/* Trivia - 12.c
 
  * The floating-point variable type (float) can hold numbers with decimal
    points.
@@ -154,4 +154,4 @@ int main(void)
    [This method is associated with the operating system, and not with C, making
     this approach limited in some aspects]
 
- */
+ * End of Trivia */

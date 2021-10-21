@@ -64,7 +64,7 @@ void print_c_in_various_forms(void)
 
 
 
-/* Trivia
+/* Trivia - 16.c
 
  * float has to be able to represent at least six significant figures and allow
    a range of at least 10^(-37) to 10^(37). The double precision floating-point
@@ -102,4 +102,4 @@ void print_c_in_various_forms(void)
  * In scanf(), %f is used for float, %lf is used for double and %Lf is used for
    long double.
 
- */
+ * End of Trivia */

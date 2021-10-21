@@ -29,7 +29,7 @@ void butler(void)
 
 
 
-/* Trivia
+/* Trivia - 03.c
 
  * void butler(void); is a prototype, also known as a function declaration. It
    also specifies the properties of a fuction.
@@ -38,4 +38,4 @@ void butler(void)
  * The butler() definition could've been put above the main() definition, with
    the program running the same.
 
- */
+ * End of Trivia */

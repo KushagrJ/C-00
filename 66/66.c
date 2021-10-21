@@ -55,7 +55,7 @@ int main(void)
 
 
 
-/* Trivia
+/* Trivia - 66.c
 
  * continue; causes the rest of the iteration of a loop to be skipped and the
    next iteration to be started. If the continue statement is inside nested
@@ -126,4 +126,4 @@ int main(void)
 
  * The goto statement shouldn't be used.
 
- */
+ * End of Trivia */

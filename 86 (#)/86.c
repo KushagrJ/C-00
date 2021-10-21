@@ -38,7 +38,7 @@ void to_binary(long num)
 
 
 
-/* Trivia
+/* Trivia - 86.c
 
  * In this program,
    (a) the last digit of the binary form is found in the first level, the second
@@ -73,4 +73,4 @@ void to_binary(long num)
    But, in some cases, recursion becomes necessary as there is no simple loop
    solution.
 
- */
+ * End of Trivia */

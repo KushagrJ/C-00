@@ -28,7 +28,7 @@ int main(void)
 
 
 
-/* Trivia
+/* Trivia - 13.c
 
  * There is no preset specifier to print a value in binary notation.
  * int a = 22; can also be written as int a = 026; (in octal form) or as
@@ -39,4 +39,4 @@ int main(void)
 
  * Another way to break a line in printf() is by using a \.
 
- */
+ * End of Trivia */

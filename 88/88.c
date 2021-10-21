@@ -36,7 +36,7 @@ void swap(char * u, char * v)
 
 
 
-/* Trivia
+/* Trivia - 88.c
 
  * The & operator (unary) gives the address where a variable is stored.
    An address can be thought of as a location in the computer's memory.
@@ -130,4 +130,4 @@ void swap(char * u, char * v)
    (c) *u = *v; is used to assign the value of y to x, and *v = temp; is used to
        assign the value of the original x to y.
 
- */
+ * End of Trivia */

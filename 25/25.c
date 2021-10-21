@@ -37,7 +37,7 @@ int main(void)
 
 
 
-/* Trivia
+/* Trivia - 25.c
 
  * string.h contains the prototype of the strlen() function, among others.
  * strlen() is used to find the length of a string. It stops counting when it
@@ -259,4 +259,4 @@ int main(void)
  * gets() (discussed later) is a dangerous function and is in no way a better
    alternative to scanf().
 
- */
+ * End of Trivia */

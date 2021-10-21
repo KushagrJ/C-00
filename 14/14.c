@@ -44,7 +44,7 @@ int main(void)
 
 
 
-/* Trivia
+/* Trivia - 14.c
 
  * On this system (i.e. Linux AMD64), the sizes of short, int, long and
    long long are 2 bytes, 4 bytes, 8 bytes and 8 bytes, respectively.
@@ -80,4 +80,4 @@ int main(void)
    printf() converts it back to a short integer before printing.
    [See 'Type conversions' in 34.c]
 
- */
+ * End of Trivia */

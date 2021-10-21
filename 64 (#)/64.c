@@ -46,7 +46,7 @@ int main(void)
 
 
 
-/* Trivia
+/* Trivia - 64.c
 
  * The general syntax of an if-else statement is as follows :-
 
@@ -91,4 +91,4 @@ int main(void)
              (b) printf("There %s %d %s\n", n == 1 ? "is" : "are",
                         n, n == 1 ? "book" : "books");]
 
- */
+ * End of Trivia */

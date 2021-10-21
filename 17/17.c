@@ -25,7 +25,7 @@ int main(void)
 
 
 
-/* Trivia
+/* Trivia - 17.c
 
  * \a sounds an alert signal.
  * \b\b\b\b\b\b makes the cursor go back six positions. On the systems using
@@ -43,4 +43,4 @@ int main(void)
    impending input. A better solution than using \n to send the output to the
    screen is to use fflush().
 
- */
+ * End of Trivia */

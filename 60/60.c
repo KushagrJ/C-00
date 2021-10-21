@@ -27,7 +27,7 @@ int main(void)
 
 
 
-/* Trivia
+/* Trivia - 60.c
 
  * In this program,
    (a) Every iteration of scanf() reads a single character from the input
@@ -38,4 +38,4 @@ int main(void)
        Here, line[i] != '\n' is evaluated after scanf() and the value of
        line[i] != '\n' is returned for the whole expression.
 
- */
+ * End of Trivia */

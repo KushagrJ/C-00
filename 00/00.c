@@ -16,7 +16,7 @@ int main(void)
 
 
 
-/* Trivia
+/* Trivia - 00.c
 
  * #include <stdio.h> tells the compiler to include information found in the
    file stdio.h, which provides support for keyboard input & for displaying
@@ -92,4 +92,4 @@ int main(void)
    a comment, causing a problem.
    [To be manually verified]
 
- */
+ * End of Trivia */

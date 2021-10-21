@@ -29,7 +29,7 @@ int main(void)
 
 
 
-/* Trivia
+/* Trivia - 34.c
 
  * The section of program between and including the braces is called a block,
    or a compound statement. It is also considered as a single statement, which
@@ -286,4 +286,4 @@ int main(void)
    It's good practice to not rely upon automatic conversions, and instead make
    the choice of types explicit.
 
- */
+ * End of Trivia */

@@ -36,7 +36,7 @@ long fibonacci(int n)
 
 
 
-/* Trivia
+/* Trivia - 87.c
 
  * Here, a double recursion is used, i.e. the function calls itself twice.
    If a function call such as fibonacci(40) is made, then the first level would
@@ -47,4 +47,4 @@ long fibonacci(int n)
    Thus, recursion should be used cautiously, particularly when efficiency is
    important.
 
- */
+ * End of Trivia */

@@ -24,7 +24,7 @@ int main(void)
 
 
 
-/* Trivia
+/* Trivia - 35.c
 
  * ++ is the increment operator. It increments the value of its operand by 1.
    It's operand's data type can be int, char, float, etc.
@@ -460,4 +460,4 @@ int main(void)
     y due to (y = 5)]
    [Similarly for other similar expressions]
 
- */
+ * End of Trivia */

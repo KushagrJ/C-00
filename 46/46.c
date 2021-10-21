@@ -19,7 +19,7 @@ int main(void)
 
 
 
-/* Trivia
+/* Trivia - 46.c
 
  * A Few Relational Operators :-
    1. <  (is less than)
@@ -172,4 +172,4 @@ int main(void)
    advance.
    The for loop is usually nice because it is concise.
 
- */
+ * End of Trivia */

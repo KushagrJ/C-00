@@ -21,7 +21,7 @@ int main(void)
 
 
 
-/* Trivia
+/* Trivia - 01.c
 
  * Here, a is an identifier, i.e. a name selected for a variable, a function or
    some other entity.
@@ -46,4 +46,4 @@ int main(void)
    The phrase enclosed in double quotes is the Control-String, which describes
    how the items are to be printed.
 
- */
+ * End of Trivia */
