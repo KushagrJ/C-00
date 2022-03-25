@@ -57,6 +57,8 @@ int main(void)
    compiler use such constants as unsigned int, long, unsigned long, long long
    or unsigned long long, suffixes u/U, l/L, ul/UL, ll/LL or ull/ULL should be
    used, respectively.
+   For eg., an integer literal with a U suffix has the smallest type of unsigned
+   int, unsigned long and unsigned long long in which the literal's value fits.
    [long x = (long) 1; is different from long x = 1L; as in the first case, the
     constant 1 is initially of data type int and is then converted to long, but
     in the second case, the constant 1 is of data type long to begin with.
