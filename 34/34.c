@@ -243,6 +243,8 @@ int main(void)
        the expression x and the value stored in that object get converted to int
        when used.
        Also, the data type of the expression 'A' is int.]
+      ['A' is of type int in C, but is of type char in C++.
+       'A' + 'B', etc. are of type int in both C and C++.]
       [Similar logic for other conversions listed below]
       If sizeof(short) is the same as sizeof(int) on a system, then the data
       type of the value of an expression and expression itself of data type
